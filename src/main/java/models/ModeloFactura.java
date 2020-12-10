@@ -6,10 +6,13 @@
 package models;
 
 import classes.Pedido;
+import classes.ProductosSolicitados;
+import classes.solicitar;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
@@ -164,6 +167,100 @@ public class ModeloFactura extends Conexion{
         return pedido;
         
     }
+    
+        public int getProductosSolicitados(int id){
+        solicitar soli = null;
+        PreparedStatement pst = null;
+        int idproducto = 0;
+        ResultSet rs = null;
+        try {
+            String sql = "select * from solicitar s, productos p where s.id_ped_sol = ? and p.id_producto = s.id_producto_sol";
+            pst = getConnection().prepareStatement(sql);
+            pst.setInt(1,id);
+            rs = pst.executeQuery();
+            while(rs.next()){
+                soli = new solicitar(rs.getInt("id_sol"), rs.getInt("cantidad_sol"),rs.getInt("id_producto_sol"), rs.getInt("id_ped_sol"));
+                idproducto = rs.getInt("id_producto_sol");
+            }
+        } catch (Exception e) {
+            System.out.println("Error en obtener solicitados");
+        } finally{
+            try {
+                if(rs != null) rs.close();
+                if(pst != null) pst.close();
+                if(getConnection() != null) getConnection().close();
+            } catch (Exception e) {
+            }
+        }       
+        return idproducto;
+        
+    }
+    
+    
+    public ArrayList<ProductosSolicitados> getListSolicitar(int idpedido) throws SQLException{
+        ArrayList<ProductosSolicitados> soli = new ArrayList<>();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        try{
+            String sql = "select p.nombre_producto, s.cantidad_sol from solicitar s, productos p where s.id_ped_sol = ? and s.id_producto_sol = p.id_producto";
+            pst = getConnection().prepareStatement(sql);
+            pst.setInt(1, idpedido);
+            rs = pst.executeQuery();
+            while(rs.next()){
+                soli.add(new ProductosSolicitados(rs.getString("p.nombre_producto"),rs.getInt("s.cantidad_sol")));
+                
+            }
+        }catch(Exception e){
+            System.out.println("Error al obtener listado de solicitar");
+        }finally{
+            try{
+                if(rs != null){
+                    if(pst != null){
+                        if(getConnection() != null){
+                            getConnection().close();
+                        }
+                    }
+                }
+            }catch(Exception e){
+                System.out.println("Error");
+            }
+        }
+        return soli;
+    }
+    
+    public ArrayList<solicitar> getAllsolicitados() throws SQLException{
+        ArrayList<solicitar> soli = new ArrayList<>();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        try{
+            String sql = "Select * from solicitar";
+            pst = getConnection().prepareStatement(sql);
+            rs = pst.executeQuery();
+            while(rs.next()){
+                soli.add(new solicitar(rs.getInt("id_sol"),rs.getInt("cantidad_sol"),rs.getInt("id_producto_sol"),rs.getInt("id_ped_sol")));
+            }
+        }catch(Exception e){
+            System.out.println("Error al obtener ventas");
+        }finally{
+            try{
+                if(rs != null){
+                    if(pst != null){
+                        if(getConnection() != null){
+                            getConnection().close();
+                        }
+                    }
+                }
+            }catch(Exception e){
+                System.out.println("Error");
+            }
+        }
+        return soli;
+    }
+    
+    
+    
+    
+    
     
     public static void main(String[] args){
        ModeloFactura mf = new ModeloFactura();

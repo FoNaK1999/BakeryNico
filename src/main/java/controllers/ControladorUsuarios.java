@@ -24,6 +24,14 @@ public class ControladorUsuarios {
         }        
         return htmlcode;        
     }
+    public String getRutUsuarios() throws SQLException{
+        ModeloUsuarios mus = new ModeloUsuarios();
+        String htmlcode = "";           
+        for(Usuarios usuarios : mus.getListUsuarios()){
+            htmlcode +="<option value="+usuarios.getId()+">"+usuarios.getNombre()+"</option>";
+        }        
+        return htmlcode;        
+    }
     
     
     

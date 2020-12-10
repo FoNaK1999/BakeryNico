@@ -37,4 +37,13 @@ public class ControladorVehiculo {
         }        
         return htmlcode;        
     }
+    
+        public String getVehiculo() throws SQLException{
+        ModeloVehiculo mv = new ModeloVehiculo();
+        String htmlcode = "";           
+        for(vehiculo vehiculos : mv.getAllAuto()){
+            htmlcode +="<option value="+vehiculos.getMatricula()+">"+vehiculos.getMatricula()+"</option>";
+        }        
+        return htmlcode;        
+    }
 }

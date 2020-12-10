@@ -89,6 +89,7 @@
          <li><a href="MantenedorChofer.jsp">Ver Conductores</a></li>
          <li><a href="MantenedorPedidos.jsp">Ver Pedidos</a></li>
          <li><a href="MantenedorVentas.jsp">Ver Ventas</a></li>
+         <li><a href="Reportes.jsp">Ver Reportes</a></li>
          <li><a href="#">Mantenedor Recetas</a></li>
        </ul>
      </div>

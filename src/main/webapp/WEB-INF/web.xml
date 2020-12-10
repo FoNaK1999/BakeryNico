@@ -108,6 +108,30 @@
         <servlet-name>ServletFactura2</servlet-name>
         <servlet-class>servlets.ServletFactura2</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdatePedido</servlet-name>
+        <servlet-class>servlets.UpdatePedido</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BorrarPedido</servlet-name>
+        <servlet-class>servlets.BorrarPedido</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RegistrarPedido</servlet-name>
+        <servlet-class>servlets.RegistrarPedido</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RegistrarVenta</servlet-name>
+        <servlet-class>servlets.RegistrarVenta</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateVenta</servlet-name>
+        <servlet-class>servlets.UpdateVenta</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BorrarVenta</servlet-name>
+        <servlet-class>servlets.BorrarVenta</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AddCart</servlet-name>
         <url-pattern>/agregarproducto</url-pattern>
@@ -215,6 +239,30 @@
     <servlet-mapping>
         <servlet-name>ServletFactura2</servlet-name>
         <url-pattern>/ServletFactura2</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdatePedido</servlet-name>
+        <url-pattern>/UpdatePedido</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BorrarPedido</servlet-name>
+        <url-pattern>/BorrarPedido</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegistrarPedido</servlet-name>
+        <url-pattern>/RegistrarPedido</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegistrarVenta</servlet-name>
+        <url-pattern>/RegistrarVenta</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateVenta</servlet-name>
+        <url-pattern>/UpdateVenta</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BorrarVenta</servlet-name>
+        <url-pattern>/BorrarVenta</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

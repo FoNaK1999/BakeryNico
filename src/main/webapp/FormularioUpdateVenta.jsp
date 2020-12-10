@@ -1,13 +1,9 @@
-<%@page import="controllers.ControladorVehiculo"%>
-<%@page import="controllers.ControladorUsuarios"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     String id = request.getParameter("id");
     String fecha = request.getParameter("fecha");
-    String rut = request.getParameter("rutcliente");
-    String matricula = request.getParameter("matricula");
-    ControladorUsuarios cu = new ControladorUsuarios();
-    ControladorVehiculo cv = new ControladorVehiculo();
+    String total = request.getParameter("total");
+    String tipopago = request.getParameter("tipopago");
+    String idpedido = request.getParameter("idpedido");
 %>
 <!DOCTYPE html>
 <html>
@@ -36,30 +32,30 @@
           </nav>
         <center>
             <h1 align="center">Modificar Pedido</h1>
-                <form action="UpdatePedido" method="post">
+                <form action="UpdateVenta" method="post">
                     <table>
+                        <tr><td colspan="2"><label>ORDEN DE VENTA: </label></td></tr>
+                        <tr><td><input type="text" name="id" value="<%=id%>" required readonly="readonly"></td></tr>
                         <tr><td colspan="2"><label>NUMERO PEDIDO: </label></td></tr>
-                        <tr><td><input type="hidden" name="id" value="<%=id%>" required readonly="readonly"></td></tr>
+                        <tr><td><input type="text" name="idpedido" value="<%=idpedido%>" required readonly="readonly"></td></tr>
                         <tr><td colspan="2"><label>FECHA: </label></td></tr>
                         <tr><td><input type="date" name="fecha" value="<%=fecha%>" required></td></tr>
-                        <tr><td colspan="2"><label>RUT CLIENTE: </label></td></tr>
+                        <tr><td colspan="2"><label>TOTAL: </label></td></tr>
+                        <tr><td><input type="text" name="total" value="<%=total%>" required></td></tr>
+                          <tr><td colspan="2"><label>METODO DE PAGO: </label></td></tr>
                         <tr><td>
-                                <select name="rut">
-                                 <option>Seleccione un cliente</option>
-                                    <%=cu.getRutUsuarios()%>
-                                </select>
-                        </td></tr>
-                        <tr><td colspan="2"><label>MATRICULA: </label></td></tr>
-                        <tr><td>
-                                <select name="matricula">
-                                 <option>Seleccione una matricula</option>
-                                    <%=cv.getVehiculo()%>
+                                <select name="tipopago">
+                                    <option>Seleccione un metodo de pago</option>
+                                    <option value="Venta Normal">Venta Normal</option>
+                                    <option value="Venta Debito">Venta Debito</option>
+                                    <option value="Venta en Cuotas">Venta en Cuotas</option>
+                                    <option value="Venta Prepago">Venta Prepago</option>                                
                                 </select>
                         </td></tr>
                         <tr><td><label colspan="2">CAMBIAR ESTADO:</label></td></tr>
                         <tr><td><div id="content" style="padding:20px">
-                            <label>Entregado</label>
-                                <input type="radio"  name="state" value="Entregado" style="margin-right: 10px" required>
+                            <label>Pagado</label>
+                                <input type="radio"  name="state" value="Pagado" style="margin-right: 10px" required>
                             <label>Pendiente</label>
                                 <input type="radio"  name="state" value="Pendiente" required>
                                 </div></td></tr>

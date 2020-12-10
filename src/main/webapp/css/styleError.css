@@ -1,3 +1,21 @@
+.fondo{
+    background-image:url(../images/home/pasteleriatermino.jpg);
+        z-index: -999;
+        width: 100%;
+        height: auto;
+        position: fixed;
+        top: 0;
+        left: 0;
+}
+#full-screen-background-image {
+    z-index: -999;
+    width: 100%;
+    height: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
 .jumbito{
     margin: 10% auto;
     width:50%;

@@ -2,6 +2,7 @@
 <%@page import="controllers.ControladorIngredientes"%>
 <%
     ControladorPedidos cp = new ControladorPedidos();
+    ControladorPedidos cp2 = new ControladorPedidos();
     String status = "0";
 %>
 <!DOCTYPE html>
@@ -29,7 +30,7 @@
                   <a class="nav-link" href="index.html">Casa</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="IngresarIngrediente.jsp">Ingresar Pedido</a>
+                  <a class="nav-link" href="IngresarPedido.jsp">Ingresar Pedido</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href=""></a>
@@ -59,13 +60,15 @@
                   <th scope="col">Rut Cliente</th>
                   <th scope="col">Estado Pedido</th>
                   <th scope="col">Matricula Vehiculo</th>
+                  <th scope="col">Productos del Pedidos</th>
                   <th scope="col">Acciones</th>
                 </tr>
               </thead>
               <tbody>
-                  <%=cp.getPedidos()%>
+                  <%=cp.getPedidos()%>               
               </tbody>
             </table>
+            
                     <%
                     if(status=="2"){
                     %>
@@ -83,5 +86,11 @@
                     %>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+        <script>
+                var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+                var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+                  return new bootstrap.Popover(popoverTriggerEl)
+                })
+        </script>
     </body>
 </html>

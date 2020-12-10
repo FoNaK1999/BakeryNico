@@ -19,6 +19,7 @@ import java.util.ArrayList;
  * @author marti
  */
 public class ModeloPedidos extends Conexion {
+    //Flujo cliente
     public int RegistrarPedido(String estado, String rutCliente, String matricula){
         PreparedStatement pst = null;
         ResultSet rs = null;
@@ -266,6 +267,97 @@ public class ModeloPedidos extends Conexion {
         }
         return pedido;
     }
+        
+        public boolean UpdatePedido(int id, String fecha, String estado, String rutcliente, String matricula){        
+        PreparedStatement pst = null;       
+        
+        try{
+        String sql = "UPDATE pedidos set fecha_ped = ?, estado_ped = ?, id_usu_ped = ?, id_ve_ped = ? where id_ped = ? ";
+        pst = getConnection().prepareStatement(sql);
+        pst.setString(1, fecha);
+        pst.setString(2, estado);
+        pst.setString(3, rutcliente);
+        pst.setString(4, matricula);
+        pst.setInt(5, id);
+        pst.executeUpdate();
+        return true;
+        }catch(Exception ex){
+            System.out.println("Error al actualizar pedido");
+        }finally{
+            try{
+                    if(pst != null){
+                        if(getConnection() != null){
+                            getConnection().close();
+                        }
+                    }
+            }catch(Exception e){
+                System.out.println("Error");
+            }
+        
+        }
+      return false;
+    }
+        
+        public boolean BorrarPedido(int id){        
+        PreparedStatement pst = null;       
+        
+        try{
+        String sql = "UPDATE pedidos set estado_ped = 'Eliminado' where id_ped = ? ";
+        pst = getConnection().prepareStatement(sql);
+        pst.setInt(1, id);
+        pst.executeUpdate();
+        return true;
+        }catch(Exception ex){
+            System.out.println("Error al borrar pedido");
+        }finally{
+            try{
+                    if(pst != null){
+                        if(getConnection() != null){
+                            getConnection().close();
+                        }
+                    }
+            }catch(Exception e){
+                System.out.println("Error");
+            }
+        
+        }
+      return false;
+    }
+    
+    public boolean RegistrarPedidoFormulario(String fecha,String estado, String rutCliente, String matricula){
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+               
+        try{         
+                String sql = "insert into pedidos (fecha_ped, estado_ped, id_usu_ped, id_ve_ped) values (?,?,?,?)";
+                pst = getConnection().prepareStatement(sql);
+                pst.setString(1,fecha);
+                pst.setString(2,estado);
+                pst.setString(3,rutCliente);
+                pst.setString(4,matricula);
+                pst.executeUpdate();
+                return true;
+                
+        }catch(SQLException ex){
+            System.out.println("Error al insertar pedido");
+        }finally{
+            try{
+                if(getConnection() != null){
+                    getConnection().close();
+                }
+                if(pst != null){
+                    pst.close();
+                }
+                if(rs != null){
+                    rs.close();
+                }
+            }catch(SQLException ex){
+                
+            }
+        }
+        return false;
+    }
+        
     
     public static void main(String[] args){
        ModeloPedidos mf = new ModeloPedidos();

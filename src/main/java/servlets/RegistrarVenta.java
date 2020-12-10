@@ -5,21 +5,19 @@
  */
 package servlets;
 
-import classes.Session;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import models.ModeloUsuarios;
+import models.ModeloVentas;
 
 /**
  *
  * @author marti
  */
-public class ValidarLogin extends HttpServlet {
+public class RegistrarVenta extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,33 +31,22 @@ public class ValidarLogin extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        ModeloUsuarios mu = new ModeloUsuarios();
-        ModeloUsuarios mu2 = new ModeloUsuarios();
-        ModeloUsuarios mu3 = new ModeloUsuarios();
-        ModeloUsuarios mu4 = new ModeloUsuarios();
         
-        Session miusuario = new Session();
+        ModeloVentas mv = new ModeloVentas();
         
+        String id = request.getParameter("id");
+        String fecha = request.getParameter("fecha");
+        int total = Integer.parseInt(request.getParameter("total"));
+        String tipopago = request.getParameter("tipopago");
+        int idped = Integer.parseInt(request.getParameter("idped"));
+        String state = request.getParameter("state");
         
-        String mail = request.getParameter("Mail");
-        String pass = request.getParameter("Password");
-        
-        
-        //Cliente
-        if(mu.Autenticacion(mail, pass)==true){
-            miusuario= mu3.getNombreUsuario(mail);                        
-            
-            HttpSession misession= request.getSession(true);
-            misession.setAttribute("usuario",miusuario);
-            
-            response.sendRedirect("shop.jsp?idcat=1");
-        }else if(mu2.AutenticacionAdmin(mail, pass)==true){
-            //Administrador
-                request.getSession().invalidate();            
-                response.sendRedirect("mantenedor.jsp");               
+        if(mv.RegistrarVenta(id, fecha, total, tipopago, state, idped)){
+            response.sendRedirect("MantenedorVentas.jsp");
         }else{
-            response.sendRedirect("login.jsp?status=Correo o clave incorrectos");  
+            response.sendRedirect("error.jsp");
         }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
