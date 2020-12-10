@@ -67,7 +67,7 @@ public class servletsolicita extends HttpServlet {
             }
             
             if(estado = true){
-                
+                sesion.removeAttribute("carrito");
                 response.sendRedirect("Termino.jsp");
             }else{
                 response.sendRedirect("error.jsp");

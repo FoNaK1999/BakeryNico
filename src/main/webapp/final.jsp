@@ -1,3 +1,4 @@
+<%@page import="controllers.ControladorVehiculo"%>
 <%@page import="com.transbank.webpay.wswebpay.service.WsTransactionDetailOutput"%>
 <%@page import="com.transbank.webpay.wswebpay.service.WsTransactionDetailOutput"%>
 <%@page import="com.transbank.webpay.wswebpay.service.TransactionResultOutput"%>
@@ -16,6 +17,10 @@
     ArrayList<Articulo> articulos = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
     HttpSession misession= (HttpSession) request.getSession();
     Session miusuario= (Session) misession.getAttribute("usuario");
+    
+    System.out.println("USUARIO: "+miusuario.getNombre());
+    
+    ControladorVehiculo cv = new ControladorVehiculo();
     
     bank b = new bank();
     
@@ -37,8 +42,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Pedido</title>
     </head>
-    <body>
-        
+    <body>        
         <%               
             
             ControladorProducto cp = new ControladorProducto();
@@ -53,12 +57,11 @@
         %>                
         <form action="ServletFactura2" method="post" id="pedido">
             <input type="hidden" name="rut" value="<%=miusuario.getId()%>">
-            <input type="hidden" name="patente" value="FS12RT">
+            <%=cv.getPatenteVehiculo()%><!--Vehiculo-->
             <input type="hidden" name="monto" value="<%=total%>">
             <input type="hidden" name="codeorder" id="codeorder" value="">
             <input type="hidden" name="tipopago" id="tipopago" value="">
-        </form>
-            
+        </form>           
         <script>
             document.getElementById('tipopago').value = localStorage.getItem('tipopago');
             document.getElementById('codeorder').value = localStorage.getItem('codeorder');

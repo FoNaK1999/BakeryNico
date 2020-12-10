@@ -30,7 +30,7 @@
         <script>
             document.getElementById('monto').innerHTML = "<strong>Monto: </strong>"+localStorage.getItem('amount');
             document.getElementById('codeorder').innerHTML = "<strong>Codigo de orden: </strong>"+localStorage.getItem('codeorder');
-            document.getElementById('reponsecode').innerHTML = "<strong>Response code: </strong>"+localStorage.getItem('responsecode');
+            //document.getElementById('reponsecode').innerHTML = "<strong>Response code: </strong>"+localStorage.getItem('responsecode');
             var pagotipo = localStorage.getItem('tipopago');
             switch(pagotipo){
                 case "VN":

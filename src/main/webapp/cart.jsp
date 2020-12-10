@@ -8,7 +8,7 @@
      HttpSession misession= (HttpSession) request.getSession();
      Session miusuario= (Session) misession.getAttribute("usuario");
      HttpSession sesion = request.getSession(true);
-     ArrayList<Articulo> articulos = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
+     ArrayList<Articulo> articulos = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");    
 %>
 <!DOCTYPE html>
 <html lang="en">

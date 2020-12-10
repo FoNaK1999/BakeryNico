@@ -15,45 +15,45 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-         <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
             </button>
             <!--<a class="navbar-brand container" href="#">Navbar</a>-->
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!--Nabvar centro-->
                 <a id="logo" class="navbar-brand" href="index.html"><img src="img/logo022.png" alt="" width="110" height="100"></a>
-                 </div>
-          </nav> 
-        <center>
+            </div>
+        </nav> 
+    <center>
 
-            <h1 align="center">Ingresar Usuario</h1>
-                <form action="ingresarUsu" method="post">
-                    <table>
-                        <tr><td colspan="2"><label>Rut: </label></td></tr>
-                        <tr><td><input type="text" name="idusu" required></td></tr>
-                        <tr><td colspan="2"><label>Nombre Usuario: </label></td></tr>
-                        <tr><td><input type="text" name="nombre" required></td></tr>
-                        <tr><td colspan="2"><label>Apellido Usuarios: </label></td></tr>
-                        <tr><td><input type="text" name="apellido" required></td></tr>
-                        <tr><td colspan="2"><label>Numero Telefonico: </label></td></tr>
-                        <tr><td><input type="text" name="fono" required></td></tr>
-                        <tr><td colspan="2"><label>Ubicacion: </label></td></tr>
-                        <tr><td><input type="text" name="ubicacion" required></td></tr>
-                        <tr><td colspan="2"><label>Correo Electronico: </label></td></tr>
-                        <tr><td><input type="text" name="email" required ></td></tr>
-                        <tr><td><label colspan="2">Rol:</label></td></tr>
-                        <tr><td><div id="content" style="padding:20px">
+        <h1 align="center">Ingresar Usuario</h1>
+        <form action="ingresarUsu" method="post">
+            <table>
+                <tr><td colspan="2"><label>Rut: </label></td></tr>
+                <tr><td><input type="text" name="idusu" required></td></tr>
+                <tr><td colspan="2"><label>Nombre Usuario: </label></td></tr>
+                <tr><td><input type="text" name="nombre" required></td></tr>
+                <tr><td colspan="2"><label>Apellido Usuarios: </label></td></tr>
+                <tr><td><input type="text" name="apellido" required></td></tr>
+                <tr><td colspan="2"><label>Numero Telefonico: </label></td></tr>
+                <tr><td><input type="text" name="fono" required></td></tr>
+                <tr><td colspan="2"><label>Ubicacion: </label></td></tr>
+                <tr><td><input type="text" name="ubicacion" required></td></tr>
+                <tr><td colspan="2"><label>Correo Electronico: </label></td></tr>
+                <tr><td><input type="text" name="email" required ></td></tr>
+                <tr><td><label colspan="2">Rol:</label></td></tr>
+                <tr><td><div id="content" style="padding:20px">
                             <label>Cliente</label>
-                                <input type="radio"  name="rol" value="2" style="margin-right: 10px" required>
+                            <input type="radio"  name="rol" value="2" style="margin-right: 10px" required>
                             <label>Administrador</label>
-                                <input type="radio"  name="rol" value="1" required>
-                                </div></td></tr>
-                        <tr><td colspan="2"><label>Password: </label></td></tr>
-                        <tr><td><input type="text" name="pass" required></td></tr>
-                        <tr><td><input type="submit" value="Registrar usuario"/></td></tr>
-                    </table>
-                </form>
+                            <input type="radio"  name="rol" value="1" required>
+                        </div></td></tr>
+                <tr><td colspan="2"><label>Password: </label></td></tr>
+                <tr><td><input type="text" name="pass" required></td></tr>
+                <tr><td><input type="submit" value="Registrar usuario"/></td></tr>
+            </table>
+        </form>
             <a href="javascript:window.history.go(-1);" style="float:left; border:2px black solid; background-color:gainsboro;">Volver al listado</a>
             
         </center>

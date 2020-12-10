@@ -8,6 +8,7 @@ package models;
 import classes.Pedido;
 import classes.Proveedor;
 import classes.Venta;
+import classes.vehiculo;
 import com.mysql.jdbc.Statement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -124,10 +125,7 @@ public class ModeloPedidos extends Conexion {
     //Insercion en tabla venta
     public boolean RegistrarVenta(String id, int total, String tipopago, String estado, int idped){        
         PreparedStatement pst = null;
-        ResultSet rs = null;
-        
-        
-        
+        ResultSet rs = null;   
         try{
         String sql = "insert into venta (id_v, fecha_v, total_v, tipopago_v, estado_dv, id_ped_v) values (?,CURDATE(),?,?,?,?)";
         pst = getConnection().prepareStatement(sql);
@@ -156,34 +154,38 @@ public class ModeloPedidos extends Conexion {
     }
     
     
+   
     
-    
-    public boolean ObtenerVehiculo(){        
+public String getAllAutoPatente() throws SQLException{
+        ArrayList<vehiculo> auto = new ArrayList<>();
         PreparedStatement pst = null;
         ResultSet rs = null;
+        String patente = "";
         try{
-        String sql = "select * from vehiculo where estado_ve = 'Disponible'";
-        pst = getConnection().prepareStatement(sql);
-        rs = pst.executeQuery();      
-        if(rs.absolute(1)){
-            return true;
-        }
-        }catch(Exception ex){
-            System.out.println("Error al obtener producto");
+            String sql = "select * from vehiculo where estado_ve = 'Disponible'";
+            pst = getConnection().prepareStatement(sql);
+            rs = pst.executeQuery();
+            while(rs.next()){
+                auto.add(new vehiculo(rs.getString("matricula_ve"),rs.getString("estado_ve"),rs.getString("rut_ch_ve")));
+                patente = rs.getString("matricula_ve");
+            }
+        }catch(SQLException e){
+            System.out.println("Error al obtener patente vehiculo");
         }finally{
             try{
+                if(rs != null){
                     if(pst != null){
                         if(getConnection() != null){
                             getConnection().close();
                         }
                     }
-            }catch(Exception e){
+                }
+            }catch(SQLException e){
                 System.out.println("Error");
             }
-        
         }
-      return false;
-    }
+         return patente;
+    } 
     
     public Pedido getPedido(){
         Pedido pedido = null;

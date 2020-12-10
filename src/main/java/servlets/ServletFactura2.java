@@ -5,12 +5,15 @@
  */
 package servlets;
 
+import classes.Articulo;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import models.ModeloFactura;
 import models.ModeloPedidos;
 
@@ -35,8 +38,12 @@ public class ServletFactura2 extends HttpServlet {
         ModeloPedidos mp = new ModeloPedidos();
         ModeloPedidos mp2 = new ModeloPedidos();
         
+        
+        
+        
         String codeorder =request.getParameter("codeorder");
         String tipopago = request.getParameter("tipopago");
+        String patente = request.getParameter("patente");
         int monto = Integer.parseInt(request.getParameter("monto"));
         String estado = "Aprobado";
         switch(tipopago){
@@ -49,10 +56,10 @@ public class ServletFactura2 extends HttpServlet {
             case "VC":
                 tipopago = "Venta en Cuotas";
         }
-        System.out.println("Tipo Pago: "+tipopago+"Codigo de orden: "+codeorder);
+        System.out.println("Tipo Pago: "+tipopago+"Codigo de orden: "+codeorder+" Patente: "+patente);
        
         int valor = 0;                     
-        valor = mp.RegistrarPedido("Pendiente", request.getParameter("rut"),request.getParameter("patente"));               
+        valor = mp.RegistrarPedido("Pendiente", request.getParameter("rut"), patente);               
         
         if(valor>0){
             mp2.RegistrarVenta(codeorder, monto, tipopago, estado, valor);
