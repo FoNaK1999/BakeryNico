@@ -45,7 +45,7 @@ public class ServletFactura2 extends HttpServlet {
         String tipopago = request.getParameter("tipopago");
         String patente = request.getParameter("patente");
         int monto = Integer.parseInt(request.getParameter("monto"));
-        String estado = "Aprobado";
+        String estado = "Pendiente";
         switch(tipopago){
             case "VN":
                 tipopago = "Venta Normal";

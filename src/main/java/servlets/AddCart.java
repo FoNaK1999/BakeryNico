@@ -56,7 +56,7 @@ public class AddCart extends HttpServlet {
         }
         sesion.setAttribute("carrito", articulos);
         
-        response.sendRedirect("cart.jsp?status=correcto");
+        response.sendRedirect("cart.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

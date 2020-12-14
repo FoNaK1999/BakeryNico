@@ -10,6 +10,7 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/styleReportes.css" type="text/css">
         <!----------------------Fin Links------------------------------------->
         <title>Reportes</title>
     </head>
@@ -48,21 +49,38 @@
               </ul>
             </div>
           </nav>
-            <table class="table">
-              <thead>
-                <tr class="table-dark">
-                  <th scope="col">Orden Venta</th>
-                  <th scope="col">Fecha Venta</th>
-                  <th scope="col">Total</th>
-                  <th scope="col">Tipo pago</th>
-                  <th scope="col">Estado</th>
-                  <th scope="col">Numero Pedido</th>
-                  <th scope="col">Acciones</th>
+        <div class="cartas">
+            <table>
+                <tr>
+                    <td>
+                        <div class="card border-info mb-3" style="max-width: 18rem;">
+                          <div class="card-header">Ventas Diarias</div>
+                          <div class="card-body">
+                            <h5 class="card-title">Info card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                          </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="card border-info mb-3" style="max-width: 18rem;">
+                          <div class="card-header">Ventas Mensuales</div>
+                          <div class="card-body">
+                            <h5 class="card-title">Info card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                          </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="card border-info mb-3" style="max-width: 18rem;">
+                          <div class="card-header">Ventas Anuales</div>
+                          <div class="card-body">
+                            <h5 class="card-title">Info card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                          </div>
+                        </div>
+                    </td>
                 </tr>
-              </thead>
-              <tbody>
-                  
-              </tbody>
             </table>
+        </div>
     </body>
 </html>

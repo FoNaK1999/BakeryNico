@@ -1,0 +1,9 @@
+.cartas{
+  width:100%;
+  height:100%;
+  margin: 1rem;
+  padding: 1rem;
+  /* IMPORTANTE */
+  text-align: center;
+}
+

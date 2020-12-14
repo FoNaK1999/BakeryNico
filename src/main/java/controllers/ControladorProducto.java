@@ -68,6 +68,32 @@ public class ControladorProducto {
     }
     //Fin mantenedor
     
+        public String getListadoProductosRegistrarPedido() throws SQLException{
+        ModeloProducto mp = new ModeloProducto();
+        String htmlcode = "";       
+        for(Producto producto : mp.getListProductos()){
+            htmlcode += "<tr>\n" +
+"                             <td class=\"column1\">"+producto.getId()+"</>\n" +
+"                             <td class=\"column1\">"+producto.getNombre()+"</td>\n" +
+"                             <td class=\"column1\">"+producto.getStock()+"</td>\n" +
+"                       </tr>";
+        }        
+        return htmlcode;        
+    }
+    
+    
+        public String getDatosProductos() throws SQLException{
+        ModeloProducto mp = new ModeloProducto();
+        String htmlcode = "";       
+        for(Producto producto : mp.getListProductos()){
+            htmlcode += "<option value="+producto.getId()+">"+producto.getNombre()+"</option>";
+        }        
+        return htmlcode;        
+    }
+    
+    
+    
+    
     public Producto getProducto(int id){
         return new ModeloProducto().getProducto(id);
     }

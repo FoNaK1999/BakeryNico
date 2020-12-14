@@ -326,22 +326,34 @@ public String getAllAutoPatente() throws SQLException{
       return false;
     }
     
-    public boolean RegistrarPedidoFormulario(String fecha,String estado, String rutCliente, String matricula){
+    public int RegistrarPedidoFormulario(String fecha,String estado, String rutCliente, String matricula){
         PreparedStatement pst = null;
         ResultSet rs = null;
-               
-        try{         
+        int lastid = -1;
+        
+        
+        try{
+            
                 String sql = "insert into pedidos (fecha_ped, estado_ped, id_usu_ped, id_ve_ped) values (?,?,?,?)";
-                pst = getConnection().prepareStatement(sql);
+                pst = getConnection().prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
                 pst.setString(1,fecha);
                 pst.setString(2,estado);
                 pst.setString(3,rutCliente);
                 pst.setString(4,matricula);
                 pst.executeUpdate();
-                return true;
+
+                
+                
+                rs = pst.getGeneratedKeys();
+                
+                if (rs.next()){
+                    lastid=rs.getInt(1);
+                                
+                }
+                return lastid;
                 
         }catch(SQLException ex){
-            System.out.println("Error al insertar pedido");
+            System.out.println("Error en los datos del pedido");
         }finally{
             try{
                 if(getConnection() != null){
@@ -357,7 +369,7 @@ public String getAllAutoPatente() throws SQLException{
                 
             }
         }
-        return false;
+        return lastid;
     }
         
     

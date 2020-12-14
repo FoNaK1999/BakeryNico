@@ -37,9 +37,18 @@ public class RegistrarPedido extends HttpServlet {
         String fecha = request.getParameter("fecha");
         String rut = request.getParameter("rut");
         String matricula = request.getParameter("matricula");
-        String state = request.getParameter("state");       
+        String state = request.getParameter("state");
+        int cantidadProd = Integer.parseInt(request.getParameter("cantidadProductos"));
         
-        if(mp.RegistrarPedidoFormulario(fecha, state, rut, matricula)){
+        int valor = mp.RegistrarPedidoFormulario(fecha, state, rut, matricula);
+        
+        
+        if(valor > -1){
+            for(int i=1;i<=cantidadProd;i++){
+                ModeloPedidos mp2 = new ModeloPedidos();
+                System.out.println(cantidadProd);
+                mp2.RegistrarSolicitar(Integer.parseInt(request.getParameter("producto" + i)),Integer.parseInt(request.getParameter("cantidad" + i)), valor, i);
+            }
             response.sendRedirect("MantenedorPedidos.jsp");
         }else{
             response.sendRedirect("error.jsp");

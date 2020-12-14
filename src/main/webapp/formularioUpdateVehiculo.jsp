@@ -43,7 +43,7 @@
                         <tr><td colspan="2"><label>PATENTE: </label></td></tr>
                         <tr><td><input type="text" name="matricula" value="<%=matricula%>" required></td></tr>
                         <tr><td colspan="2"><label>R.U.T Chofer: </label></td></tr>
-                        <tr><td><input type="text" name="rutchofer" value="<%=rutchofer%>" required></td></tr>
+                        <!--<tr><td><input type="text" name="rutchofer" value=">" required></td></tr>-->
                         <tr><td>
                                 <select name="rutchofer">
                                  <option value="<%=rutchofer%>">Seleccionar vehiculo</option>
