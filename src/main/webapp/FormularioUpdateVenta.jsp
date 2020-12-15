@@ -35,23 +35,15 @@
                 <form action="UpdateVenta" method="post">
                     <table>
                         <tr><td colspan="2"><label>ORDEN DE VENTA: </label></td></tr>
-                        <tr><td><input type="text" name="id" value="<%=id%>" required readonly="readonly"></td></tr>
+                        <tr><td><input type="text" name="id" value="<%=id%>" readonly="readonly"></td></tr>
                         <tr><td colspan="2"><label>NUMERO PEDIDO: </label></td></tr>
-                        <tr><td><input type="text" name="idpedido" value="<%=idpedido%>" required readonly="readonly"></td></tr>
+                        <tr><td><input type="text" name="idpedido" value="<%=idpedido%>" readonly="readonly"></td></tr>
                         <tr><td colspan="2"><label>FECHA: </label></td></tr>
-                        <tr><td><input type="date" name="fecha" value="<%=fecha%>" required></td></tr>
+                        <tr><td><input type="date" name="fecha" value="<%=fecha%>" readonly></td></tr>
                         <tr><td colspan="2"><label>TOTAL: </label></td></tr>
-                        <tr><td><input type="text" name="total" value="<%=total%>" required></td></tr>
+                        <tr><td><input type="text" name="total" value="<%=total%>" readonly></td></tr>
                           <tr><td colspan="2"><label>METODO DE PAGO: </label></td></tr>
-                        <tr><td>
-                                <select name="tipopago">
-                                    <option>Seleccione un metodo de pago</option>
-                                    <option value="Venta Normal">Venta Normal</option>
-                                    <option value="Venta Debito">Venta Debito</option>
-                                    <option value="Venta en Cuotas">Venta en Cuotas</option>
-                                    <option value="Venta Prepago">Venta Prepago</option>                                
-                                </select>
-                        </td></tr>
+                          <tr><td><input type="text" name="tipopago" value="<%=tipopago%>" readonly></td></tr>
                         <tr><td><label colspan="2">CAMBIAR ESTADO:</label></td></tr>
                         <tr><td><div id="content" style="padding:20px">
                             <label>Pagado</label>

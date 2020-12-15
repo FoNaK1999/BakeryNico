@@ -9,7 +9,7 @@ import classes.Pedido;
 import classes.Proveedor;
 import classes.Venta;
 import classes.vehiculo;
-import com.mysql.jdbc.Statement;
+import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -157,7 +157,6 @@ public class ModeloPedidos extends Conexion {
    
     
 public String getAllAutoPatente() throws SQLException{
-        ArrayList<vehiculo> auto = new ArrayList<>();
         PreparedStatement pst = null;
         ResultSet rs = null;
         String patente = "";
@@ -166,7 +165,6 @@ public String getAllAutoPatente() throws SQLException{
             pst = getConnection().prepareStatement(sql);
             rs = pst.executeQuery();
             while(rs.next()){
-                auto.add(new vehiculo(rs.getString("matricula_ve"),rs.getString("estado_ve"),rs.getString("rut_ch_ve")));
                 patente = rs.getString("matricula_ve");
             }
         }catch(SQLException e){

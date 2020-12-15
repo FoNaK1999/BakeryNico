@@ -81,14 +81,14 @@ public class ControladorProducto {
         return htmlcode;        
     }
     
-    
+        //Combobox Ingresar Pedido
         public String getDatosProductos() throws SQLException{
-        ModeloProducto mp = new ModeloProducto();
-        String htmlcode = "";       
-        for(Producto producto : mp.getListProductos()){
-            htmlcode += "<option value="+producto.getId()+">"+producto.getNombre()+"</option>";
-        }        
-        return htmlcode;        
+            ModeloProducto mp = new ModeloProducto();
+            String htmlcode = "";       
+            for(Producto producto : mp.getListProductos()){
+                htmlcode += "<option value="+producto.getId()+">"+producto.getNombre()+"</option>";
+            }        
+            return htmlcode;  
     }
     
     

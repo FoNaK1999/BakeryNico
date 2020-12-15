@@ -132,6 +132,30 @@
         <servlet-name>BorrarVenta</servlet-name>
         <servlet-class>servlets.BorrarVenta</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>BorrarRecetas</servlet-name>
+        <servlet-class>servlets.BorrarRecetas</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RegistrarReceta</servlet-name>
+        <servlet-class>servlets.RegistrarReceta</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateRecetas</servlet-name>
+        <servlet-class>servlets.UpdateRecetas</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ActualizarReceta</servlet-name>
+        <servlet-class>servlets.ActualizarReceta</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PruebaServlet</servlet-name>
+        <servlet-class>servlets.PruebaServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TestServlet</servlet-name>
+        <servlet-class>servlets.TestServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AddCart</servlet-name>
         <url-pattern>/agregarproducto</url-pattern>
@@ -263,6 +287,30 @@
     <servlet-mapping>
         <servlet-name>BorrarVenta</servlet-name>
         <url-pattern>/BorrarVenta</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BorrarRecetas</servlet-name>
+        <url-pattern>/BorrarRecetas</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegistrarReceta</servlet-name>
+        <url-pattern>/RegistrarReceta</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateRecetas</servlet-name>
+        <url-pattern>/UpdateRecetas</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ActualizarReceta</servlet-name>
+        <url-pattern>/ActualizarReceta</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PruebaServlet</servlet-name>
+        <url-pattern>/PruebaServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TestServlet</servlet-name>
+        <url-pattern>/TestServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

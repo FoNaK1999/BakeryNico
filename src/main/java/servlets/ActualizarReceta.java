@@ -5,19 +5,25 @@
  */
 package servlets;
 
+import classes.Receta;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Paths;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import models.ModeloPedidos;
+import javax.servlet.http.Part;
+import models.ModeloRecetas;
+import javax.servlet.annotation.MultipartConfig;
 
 /**
  *
  * @author marti
  */
-public class RegistrarPedido extends HttpServlet {
+@MultipartConfig
+public class ActualizarReceta extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,30 +37,36 @@ public class RegistrarPedido extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        ModeloRecetas mrc = new ModeloRecetas();
         
-        ModeloPedidos mp = new ModeloPedidos();
-        
-        String fecha = request.getParameter("fecha");
-        String rut = request.getParameter("rut");
-        String matricula = request.getParameter("matricula");
-        String state = request.getParameter("state");
-        int cantidadProd = Integer.parseInt(request.getParameter("cantidadProductos"));       
-        
-        int valor = mp.RegistrarPedidoFormulario(fecha, state, rut, matricula);
+        int id = Integer.parseInt(request.getParameter("idrc2"));
+        Receta rec = mrc.getReceta(id);
               
-        System.out.println(fecha+" "+rut+" "+matricula+" "+state+" "+valor);
-        
-        if(valor > -1){
-            for(int i=1;i<=cantidadProd;i++){
-                ModeloPedidos mp2 = new ModeloPedidos();
-                System.out.println(request.getParameter("resultado" + i));
-                mp2.RegistrarSolicitar(Integer.parseInt(request.getParameter("resultado" + i)),Integer.parseInt(request.getParameter("cantidad" + i)), valor, i);
+            String nombre = request.getParameter("nombrerc2");
+            String descripcion = request.getParameter("descripcionrc2");
+            String ingredientes = request.getParameter("ingredientesrc2");
+            String estado = request.getParameter("staterc2");
+            Part archivo = request.getPart("imagenrc2"); //llamada al parámetro foto de mi formulario. 
+            String context = request.getServletContext().getRealPath("images\\home"); //img es la carpeta que he creado en mi proyecto.
+            String foto = Paths.get(archivo.getSubmittedFileName()).getFileName().toString();
+
+            
+            
+            
+            if (foto.isEmpty()) {
+                String img = rec.getImagen();
+                mrc.UpdateReceta2(id, nombre, descripcion, ingredientes, img, estado);
+                System.out.println(id+" "+nombre+" "+descripcion+" "+ingredientes+" "+estado+" "+ img);
+                response.sendRedirect("MantenedorRecetas.jsp?status = No cambio la imagen");
+            } else {
+                archivo.write(context + File.separator + foto); // Se escribe el archivo al disco duro del servidor.
+
+                String fotoName = "images\\home" + File.separator + foto;
+                if(mrc.UpdateReceta2(id, nombre, descripcion, ingredientes, fotoName, estado)){
+                    response.sendRedirect("MantenedorRecetas.jsp?status= Cambio la imagen");
+                }
+                
             }
-            response.sendRedirect("MantenedorPedidos.jsp");
-        }else{
-            response.sendRedirect("error.jsp");
-        }
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -44,15 +44,15 @@
                         <tr><td><input type="date" name="fecha" value="<%=fecha%>" required></td></tr>
                         <tr><td colspan="2"><label>RUT CLIENTE: </label></td></tr>
                         <tr><td>
-                                <select name="rut">
-                                 <option>Seleccione un cliente</option>
+                                <select name="rut" required>
+                                    <option value="<%=rut%>">Dejar el mismo</option>
                                     <%=cu.getRutUsuarios()%>
                                 </select>
                         </td></tr>
                         <tr><td colspan="2"><label>MATRICULA: </label></td></tr>
                         <tr><td>
-                                <select name="matricula">
-                                 <option>Seleccione una matricula</option>
+                                <select name="matricula" required>
+                                    <option value="<%=matricula%>">Dejar el mismo</option>
                                     <%=cv.getVehiculo()%>
                                 </select>
                         </td></tr>

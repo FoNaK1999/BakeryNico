@@ -5,19 +5,24 @@
  */
 package servlets;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Paths;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import models.ModeloPedidos;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.http.Part;
+import models.ModeloRecetas;
 
 /**
  *
  * @author marti
  */
-public class RegistrarPedido extends HttpServlet {
+@MultipartConfig
+public class RegistrarReceta extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,29 +37,26 @@ public class RegistrarPedido extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        ModeloPedidos mp = new ModeloPedidos();
+        ModeloRecetas mr = new ModeloRecetas();
         
-        String fecha = request.getParameter("fecha");
-        String rut = request.getParameter("rut");
-        String matricula = request.getParameter("matricula");
-        String state = request.getParameter("state");
-        int cantidadProd = Integer.parseInt(request.getParameter("cantidadProductos"));       
+        int id = Integer.parseInt(request.getParameter("idrc"));
+        String nombre = request.getParameter("nombrerc");
+        String descripcion = request.getParameter("descripcionrc");
+        String ingrediente = request.getParameter("ingredientec");
+        Part archivo = request.getPart("imagenrc");
+        String estado = request.getParameter("staterc");
         
-        int valor = mp.RegistrarPedidoFormulario(fecha, state, rut, matricula);
-              
-        System.out.println(fecha+" "+rut+" "+matricula+" "+state+" "+valor);
+        String context = request.getServletContext().getRealPath("images\\home"); //img es la carpeta que he creado en mi proyecto.
+        String foto = Paths.get(archivo.getSubmittedFileName()).getFileName().toString();
+        archivo.write(context + File.separator + foto); // Se escribe el archivo al disco duro del servidor.
+        String fotoName = "images\\home" + File.separator + foto;
         
-        if(valor > -1){
-            for(int i=1;i<=cantidadProd;i++){
-                ModeloPedidos mp2 = new ModeloPedidos();
-                System.out.println(request.getParameter("resultado" + i));
-                mp2.RegistrarSolicitar(Integer.parseInt(request.getParameter("resultado" + i)),Integer.parseInt(request.getParameter("cantidad" + i)), valor, i);
-            }
-            response.sendRedirect("MantenedorPedidos.jsp");
+        if(mr.RegistrarRecetas(id, nombre, descripcion, ingrediente, fotoName, estado)==true){
+            response.sendRedirect("MantenedorRecetas.jsp");
         }else{
-            response.sendRedirect("error.jsp");
+            response.sendRedirect("IngresarRecetas.jsp?status=Error al ingresar receta.");
         }
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

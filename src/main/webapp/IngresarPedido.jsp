@@ -1,3 +1,11 @@
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="classes.Producto"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.sql.SQLException"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.Connection"%>
 <%@page import="controllers.ControladorProducto"%>
 <%@page import="controllers.ControladorVehiculo"%>
 <%@page import="controllers.ControladorUsuarios"%>
@@ -18,6 +26,7 @@
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <script src="js/jquery-3.5.1.min.js" type="text/javascript"></script>
     </head>
     <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -33,11 +42,12 @@
             <h1 align="center">Ingresar Pedido</h1>
                 <form action="RegistrarPedido" method="post">
                     <table>
-                        <tbody id="productos">
+                        <tbody>
                         <!--solicita-->
                         <tr><td colspan="2"><label id="textolabel">INGRESAR CANTIDAD DE PRODUCTOS: </label></td></tr>
                         <tr><td><input type="text" name="cantidadProductos" id="cantprod" required></td></tr>
-                        <tr><td><a class="btn btn-primary" href="#" onclick="CrearCodigo();" role="button" id="botoncito">Ingresar Productos</a></td></tr>
+                        <tr><td><input type="button" onclick="probar();" value="testear"></td></tr>
+                        <tr id="resultado"></tr>
                         <br>
                         <br>
                         <tr><td colspan="2"><label>FECHA: </label></td></tr>
@@ -63,6 +73,9 @@
                             <label>Pendiente</label>
                                 <input type="radio" id="nodisponible" name="state" value="Pendiente" required>
                         </div></td></tr>
+                        <tr><td>
+                                
+                        </td></tr>
                         <%
                         if(status!=null){
                         %>
@@ -75,42 +88,46 @@
                         }    
                         %>
                         </tbody>
+
                     </table>
                     <br>
                     <br>
                     <input type="submit" value="Registrar Pedido"/>
                 </form>
             <a href="javascript:window.history.go(-1);" style="float:left; border:2px black solid; background-color:gainsboro;">Volver al listado</a>
-        </center>
-        
-                <table class="table">
-              <thead>
-                <tr class="table-dark">
-                  <th scope="col">ID</th>
-                  <th scope="col">NOMBRE</th>
-                  <th scope="col">STOCK</th>
-                </tr>
-              </thead>
-              <tbody>
-                  <%=cp.getListadoProductosRegistrarPedido()%>
-              </tbody>
-            </table>
-        <script>
-                function CrearCodigo(){
-                        
+        </center>      
+        <script>          
+    
+            function probar(){
                         var cantprod = document.getElementById("cantprod").value;
-                        Eliminar();
-                        for(var i=1 ;i<=cantprod;i++){
+                        for(var i = 1; i <= cantprod; i++){
+                            var id = "resultado"+i.toString();
+                            var cantidad = "cantidad"+i.toString();
                             
-                                                                                       
-                        document.getElementById("productos").innerHTML += "<tr><td colspan='2'><label>INGRESAR ID PRODUCTO "+i+": </label></td></tr><tr><td><input type='text' name='producto"+i+"' required></td></tr><tr><td colspan='2'><label>INGRESAR CANTIDAD: </label></td></tr><tr><td><input type='text' name='cantidad"+i+"' required></td></tr>";
-                        //document.getElementById("<tr><td><select name='producto"+i+"'><option value = ''> No cambiar proveedor</option></select></td></tr><tr><td colspan='2'><label>INGRESAR CANTIDAD: </label></td></tr><tr><td><input type='text' name='cantidad"+i+"' required></td></tr>");
-                        //document.getElementById("productos").innerHTML = "<tr><td><select name='producto"+i+"'></select></td></tr><tr><td colspan='2'><label>INGRESAR CANTIDAD: </label></td></tr><tr><td><input type='text' name='cantidad"+i+"' required></td></tr>";
+                            document.getElementById("resultado").innerHTML += "<select id='"+id+"' name='"+id+"'></select>\n<label>CANTIDAD: </label><input type='text' name='"+cantidad+"'>";
+                        }
                         
-                    }             
-                }
+                        combobox();
+                        Eliminar();
+            }
+            
+            function combobox(){
+                var cantprod = document.getElementById("cantprod").value;
+                $.ajax({
+                    url: "TestServlet",
+                    data:{
+                        cantprod:cantprod
+                    },
+                    success: function(result){
+                        for(var i = 1; i <= cantprod; i++){
+                            var id2 = "#resultado"+i.toString();
+                            $(id2).html(result);
+                        }                  
+                    }
+                });
+            }
                 
-                function Eliminar(){
+        function Eliminar(){
                         //Input
                         var  cajita = document.getElementById("cantprod");
                         cajita.type = "hidden";

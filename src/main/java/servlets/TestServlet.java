@@ -5,19 +5,23 @@
  */
 package servlets;
 
+import classes.Producto;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import models.ModeloPedidos;
+import models.ModeloProducto;
 
 /**
  *
  * @author marti
  */
-public class RegistrarPedido extends HttpServlet {
+public class TestServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -29,30 +33,20 @@ public class RegistrarPedido extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         
-        ModeloPedidos mp = new ModeloPedidos();
-        
-        String fecha = request.getParameter("fecha");
-        String rut = request.getParameter("rut");
-        String matricula = request.getParameter("matricula");
-        String state = request.getParameter("state");
-        int cantidadProd = Integer.parseInt(request.getParameter("cantidadProductos"));       
-        
-        int valor = mp.RegistrarPedidoFormulario(fecha, state, rut, matricula);
-              
-        System.out.println(fecha+" "+rut+" "+matricula+" "+state+" "+valor);
-        
-        if(valor > -1){
-            for(int i=1;i<=cantidadProd;i++){
-                ModeloPedidos mp2 = new ModeloPedidos();
-                System.out.println(request.getParameter("resultado" + i));
-                mp2.RegistrarSolicitar(Integer.parseInt(request.getParameter("resultado" + i)),Integer.parseInt(request.getParameter("cantidad" + i)), valor, i);
-            }
-            response.sendRedirect("MantenedorPedidos.jsp");
-        }else{
-            response.sendRedirect("error.jsp");
+            
+        try (PrintWriter out = response.getWriter()) {
+            String cantprod = request.getParameter("cantprod");
+            ModeloProducto mp = new ModeloProducto();
+            String htmlcode = "";
+                for(Producto producto : mp.getListProductos()){
+                    htmlcode += "<option value="+producto.getId()+">"+producto.getNombre()+"</option>";                                    
+                }        
+      
+            out.println(htmlcode);
+               
         }
         
     }
@@ -69,7 +63,11 @@ public class RegistrarPedido extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(TestServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -83,7 +81,11 @@ public class RegistrarPedido extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(TestServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

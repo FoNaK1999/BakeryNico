@@ -11,13 +11,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import models.ModeloPedidos;
+import models.ModeloRecetas;
 
 /**
  *
  * @author marti
  */
-public class RegistrarPedido extends HttpServlet {
+public class BorrarRecetas extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,28 +32,16 @@ public class RegistrarPedido extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        ModeloPedidos mp = new ModeloPedidos();
+        ModeloRecetas mrt = new ModeloRecetas();
         
-        String fecha = request.getParameter("fecha");
-        String rut = request.getParameter("rut");
-        String matricula = request.getParameter("matricula");
-        String state = request.getParameter("state");
-        int cantidadProd = Integer.parseInt(request.getParameter("cantidadProductos"));       
+        int codigo = Integer.parseInt(request.getParameter("hidden"));
         
-        int valor = mp.RegistrarPedidoFormulario(fecha, state, rut, matricula);
-              
-        System.out.println(fecha+" "+rut+" "+matricula+" "+state+" "+valor);
-        
-        if(valor > -1){
-            for(int i=1;i<=cantidadProd;i++){
-                ModeloPedidos mp2 = new ModeloPedidos();
-                System.out.println(request.getParameter("resultado" + i));
-                mp2.RegistrarSolicitar(Integer.parseInt(request.getParameter("resultado" + i)),Integer.parseInt(request.getParameter("cantidad" + i)), valor, i);
-            }
-            response.sendRedirect("MantenedorPedidos.jsp");
+        if(mrt.BorrarReceta(codigo)){
+            response.sendRedirect("MantenedorRecetas.jsp?status=1");
         }else{
-            response.sendRedirect("error.jsp");
+            response.sendRedirect("error.jsp?status=2");
         }
+        
         
     }
 

@@ -52,7 +52,7 @@ public class ControladorVehiculo {
         ModeloPedidos mp = new ModeloPedidos();
         String htmlcode = "";           
         
-        htmlcode +="<input type='hidden' name='patente' value='"+mp.getAllAutoPatente()+"'>";
+        htmlcode += "<input type='hidden' name='patente' value='"+mp.getAllAutoPatente()+"'>";
         
         return htmlcode;        
     }

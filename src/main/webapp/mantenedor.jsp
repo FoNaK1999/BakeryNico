@@ -90,7 +90,7 @@
          <li><a href="MantenedorPedidos.jsp">Ver Pedidos</a></li>
          <li><a href="MantenedorVentas.jsp">Ver Ventas</a></li>
          <li><a href="Reportes.jsp">Ver Reportes</a></li>
-         <li><a href="#">Mantenedor Recetas</a></li>
+         <li><a href="MantenedorRecetas.jsp">Mantenedor Recetas</a></li>
        </ul>
      </div>
       <div id="fondo">
