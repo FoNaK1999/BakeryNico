@@ -72,13 +72,13 @@
                         <tr><td colspan="2"><label>Apellido: </label></td></tr>
                         <tr><td><input type="text" name="apellido" value="<%=apellido%>" required readonly="readonly"></td></tr>                        
                         <tr><td colspan="2"><label>Telefono: </label></td></tr>
-                        <tr><td><input type="text" name="fono" value="<%=fono%>" required readonly="readonly"></td></tr>                        
+                        <tr><td><input type="text" maxlength="9" name="fono" onkeypress='return event.charCode >= 48 && event.charCode <= 57' value="<%=fono%>" required></td></tr>                        
                         <tr><td colspan="2"><label>Direccion: </label></td></tr>
-                        <tr><td><input type="text" name="ubicacion" value="<%=ubicacion%>" required readonly="readonly"></td></tr>
+                        <tr><td><input type="text" maxlength="500" name="ubicacion" value="<%=ubicacion%>" required ></td></tr>
                         <tr><td colspan="2"><label>Correo electronico: </label></td></tr>
-                        <tr><td><input type="text" name="email" value="<%=email%>" required readonly="readonly"></td></tr>                        
+                        <tr><td><input type="text" maxlength="150" name="email" value="<%=email%>" required "></td></tr>                        
                         <tr><td colspan="2"><label>Password: </label></td></tr>
-                        <tr><td><input type="text" name="pass" value="<%=pass%>" required readonly="readonly"></td></tr>
+                        <tr><td><input type="password" name="pass" value="<%=pass%>" required ></td></tr>
                         <tr><td><label colspan="2">Estado:</label></td></tr>
                         <tr><td><div id="content" style="padding:20px">
                             <label>Disponible</label>
@@ -102,5 +102,14 @@
                         %>
             <a href="javascript:window.history.go(-1);" style="float:left; border:2px black solid; background-color:gainsboro;">Volver al listado</a>
         </center>
+            
+            <script>
+            function validaNumericos(event) {
+                if(event.charCode >= 48 && event.charCode <= 57){                             
+                  return true;
+                 }
+                 return false;
+            }
+            </script>
     </body>
 </html>

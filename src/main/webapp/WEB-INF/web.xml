@@ -156,6 +156,26 @@
         <servlet-name>TestServlet</servlet-name>
         <servlet-class>servlets.TestServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ValidarStock</servlet-name>
+        <servlet-class>servlets.ValidarStock</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Pruebas</servlet-name>
+        <servlet-class>servlets.Pruebas</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ActualizarAdmin</servlet-name>
+        <servlet-class>servlets.ActualizarAdmin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RegistrarAdmin</servlet-name>
+        <servlet-class>servlets.RegistrarAdmin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BorrarAdmin</servlet-name>
+        <servlet-class>servlets.BorrarAdmin</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AddCart</servlet-name>
         <url-pattern>/agregarproducto</url-pattern>
@@ -311,6 +331,26 @@
     <servlet-mapping>
         <servlet-name>TestServlet</servlet-name>
         <url-pattern>/TestServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ValidarStock</servlet-name>
+        <url-pattern>/ValidarStock</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Pruebas</servlet-name>
+        <url-pattern>/Pruebas</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ActualizarAdmin</servlet-name>
+        <url-pattern>/ActualizarAdmin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegistrarAdmin</servlet-name>
+        <url-pattern>/RegistrarAdmin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BorrarAdmin</servlet-name>
+        <url-pattern>/BorrarAdmin</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

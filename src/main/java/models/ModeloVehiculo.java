@@ -43,7 +43,41 @@ public class ModeloVehiculo extends Conexion {
             }
         }
         return auto;
+    }
+    
+    //Metodo para utilizar en ingresar pedido combobox (cambio de sentencia sql segun estado)
+    public ArrayList<vehiculo> getAllAuto2() throws SQLException{
+        ArrayList<vehiculo> auto = new ArrayList<>();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        try{
+            String sql = "Select * from vehiculo where estado_ve = 'Disponible'";
+            pst = getConnection().prepareStatement(sql);
+            rs = pst.executeQuery();
+            while(rs.next()){
+                auto.add(new vehiculo(rs.getString("matricula_ve"),rs.getString("estado_ve"),rs.getString("rut_ch_ve")));
+            }
+        }catch(SQLException e){
+            System.out.println("Error al obtener vehiculos");
+        }finally{
+            try{
+                if(rs != null){
+                    if(pst != null){
+                        if(getConnection() != null){
+                            getConnection().close();
+                        }
+                    }
+                }
+            }catch(SQLException e){
+                System.out.println("Error");
+            }
+        }
+        return auto;
     } 
+    
+    
+    
+    
    /*Metodo Ingresar*/
      public boolean RegistrarVehiculo(String matricula,String estado,String rut_chofer){
         PreparedStatement pst = null;

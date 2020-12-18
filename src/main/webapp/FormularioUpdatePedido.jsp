@@ -38,6 +38,9 @@
             <h1 align="center">Modificar Pedido</h1>
                 <form action="UpdatePedido" method="post">
                     <table>
+                        <tr><td colspan="2"><label>MODIFICAR PRODUCTOS: </label></td></tr>
+                        <tr><td><input type="button" onclick="probar();" value="Agregar productos" id="botonprod"></td></tr>
+                        <tr id="resultado"></tr>
                         <tr><td colspan="2"><label>NUMERO PEDIDO: </label></td></tr>
                         <tr><td><input type="hidden" name="id" value="<%=id%>" required readonly="readonly"></td></tr>
                         <tr><td colspan="2"><label>FECHA: </label></td></tr>

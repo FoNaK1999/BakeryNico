@@ -92,6 +92,35 @@ public class ModeloProducto extends Conexion {
         return producto;
         
     }
+        public ArrayList<Producto> getListProductosUpdatePedidos(int idped) throws SQLException{
+        ArrayList<Producto> productos = new ArrayList<>();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        try{
+            String sql = "select * from pedidos pe, productos p, solicitar s where s.id_ped_sol = pe.id_ped and s.id_producto_sol = p.id_producto and pe.id_ped = ? ";
+            pst = getConnection().prepareStatement(sql);
+            pst.setInt(1, idped);
+            rs = pst.executeQuery();
+            while(rs.next()){
+                productos.add(new Producto(rs.getInt("id_producto"),rs.getString("nombre_producto"),rs.getString("descripcion"),rs.getString("img_producto"),rs.getInt("id_categoria_prod"),rs.getInt("precio_producto"),rs.getInt("stock_producto"),rs.getString("estado")));
+            }
+        }catch(SQLException e){
+            System.out.println("Error");
+        }finally{
+            try{
+                if(rs != null){
+                    if(pst != null){
+                        if(getConnection() != null){
+                            getConnection().close();
+                        }
+                    }
+                }
+            }catch(SQLException e){
+                System.out.println("Error");
+            }
+        }
+        return productos;
+    }
     
     
 }

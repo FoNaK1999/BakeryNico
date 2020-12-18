@@ -5,19 +5,26 @@
  */
 package servlets;
 
+import classes.Administrador;
+import classes.Producto;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import models.ModeloAdmin;
+import models.ModeloPedidos;
+import models.ModeloProducto;
+import models.ModeloUsuarios;
 
 /**
  *
- * @author Happy
+ * @author marti
  */
-public class borro extends HttpServlet {
+public class ValidarStock extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -27,25 +34,19 @@ public class borro extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
+     * @throws java.sql.SQLException
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-         
-        ModeloAdmin mad = new ModeloAdmin();
-        
-       int id = Integer.parseInt(request.getParameter("hidden")); 
-       /**String id=request.getParameter("hidden");**/
-       if(mad.Eliminar(id)){
-           response.sendRedirect("MantenedorProducto.jsp?status=2");
-       }else{
-           response.sendRedirect("MantenedorProducto.jsp?status=1");
-       }
-       
-        
-          
+        try (PrintWriter out = response.getWriter()) {
+            
+                        
+            String texto = request.getParameter("texto");
+            
+            out.println(texto);
+        }
     }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -58,7 +59,11 @@ public class borro extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(ValidarStock.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -72,7 +77,11 @@ public class borro extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(ValidarStock.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

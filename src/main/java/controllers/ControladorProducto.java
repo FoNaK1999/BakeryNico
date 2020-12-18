@@ -37,8 +37,8 @@ public class ControladorProducto {
 "								</div>\n" +
 "								<div class=\"choose\">\n" +
 "									<ul class=\"nav nav-pills nav-justified\">\n" +
-"										<li><a href=\"\"><i class=\"fa fa-plus-square\"></i>Add to wishlist</a></li>\n" +
-"										<li><a href=\"\"><i class=\"fa fa-plus-square\"></i>Add to compare</a></li>\n" +
+//"										<li><a href=\"\"><i class=\"fa fa-plus-square\"></i>Add to wishlist</a></li>\n" +
+//"										<li><a href=\"\"><i class=\"fa fa-plus-square\"></i>Add to compare</a></li>\n" +
 "									</ul>\n" +
 "								</div>\n" +
 "							</div>\n" +

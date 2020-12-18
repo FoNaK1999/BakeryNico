@@ -11,13 +11,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import models.ModeloAdmin;
+import models.ModeloUsuarios;
 
 /**
  *
- * @author Happy
+ * @author marti
  */
-public class borro extends HttpServlet {
+public class ActualizarAdmin extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,19 +31,22 @@ public class borro extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-         
-        ModeloAdmin mad = new ModeloAdmin();
+        ModeloUsuarios mu = new ModeloUsuarios();
         
-       int id = Integer.parseInt(request.getParameter("hidden")); 
-       /**String id=request.getParameter("hidden");**/
-       if(mad.Eliminar(id)){
-           response.sendRedirect("MantenedorProducto.jsp?status=2");
-       }else{
-           response.sendRedirect("MantenedorProducto.jsp?status=1");
-       }
-       
-        
-          
+        String id = request.getParameter("idusu");
+        String nombre = request.getParameter("nombre");
+        String apellido = request.getParameter("apellido");
+        String fono = request.getParameter("fono");
+        String ubicacion = request.getParameter("ubicacion");
+        String email = request.getParameter("email");
+        String pass = request.getParameter("pass");
+        String estado = request.getParameter("state");
+        if(mu.UpdateAdmin(id, nombre, apellido, fono, ubicacion, email, pass, estado)){
+            response.sendRedirect("mantenedorUsuarios.jsp?status=1");
+            
+        }else{
+            response.sendRedirect("mantenedorUsuarios.jsp?status=2");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

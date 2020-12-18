@@ -47,12 +47,14 @@ public class RegistrarPedido extends HttpServlet {
         if(valor > -1){
             for(int i=1;i<=cantidadProd;i++){
                 ModeloPedidos mp2 = new ModeloPedidos();
+                ModeloPedidos mp3 = new ModeloPedidos();
                 System.out.println(request.getParameter("resultado" + i));
                 mp2.RegistrarSolicitar(Integer.parseInt(request.getParameter("resultado" + i)),Integer.parseInt(request.getParameter("cantidad" + i)), valor, i);
+                mp3.UpdateStock(Integer.parseInt(request.getParameter("cantidad" + i)), Integer.parseInt(request.getParameter("resultado" + i)));
             }
             response.sendRedirect("MantenedorPedidos.jsp");
         }else{
-            response.sendRedirect("error.jsp");
+            
         }
         
     }

@@ -42,7 +42,7 @@ public class ControladorVehiculo {
     public String getVehiculo() throws SQLException{
         ModeloVehiculo mv = new ModeloVehiculo();
         String htmlcode = "";           
-        for(vehiculo vehiculos : mv.getAllAuto()){
+        for(vehiculo vehiculos : mv.getAllAuto2()){
             htmlcode +="<option value="+vehiculos.getMatricula()+">"+vehiculos.getMatricula()+"</option>";
         }        
         return htmlcode;        

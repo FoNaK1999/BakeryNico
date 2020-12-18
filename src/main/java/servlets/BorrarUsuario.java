@@ -36,8 +36,12 @@ public class BorrarUsuario extends HttpServlet {
         
        String id = request.getParameter("hidden"); 
        /**String id=request.getParameter("hidden");**/
-       mu.EliminarUsuario(id);
-       response.sendRedirect("mantenedorUsuarios.jsp");
+       if(mu.EliminarUsuario(id)){
+           response.sendRedirect("mantenedorUsuarios.jsp?status=2");
+       }else{
+           response.sendRedirect("mantenedorUsuarios.jsp?status=1");
+       }
+       
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -34,18 +34,25 @@
             <h1 align="center">Ingresar Producto</h1>
                 <form action="registrarprod" method="post" enctype="multipart/form-data">
                     <table>
-                        <tr><td colspan="2"><label>ID Producto: </label></td></tr>
-                        <tr><td><input type="text" name="id" required></td></tr>
+                        <!--<tr><td colspan="2"><label>ID Producto: </label></td></tr>
+                        <tr><td><input type="text" name="id" required></td></tr>-->
                         <tr><td colspan="2"><label>Nombre Producto: </label></td></tr>
                         <tr><td><input type="text" name="nombreProd" required></td></tr>
-                        <tr><td colspan="2"><label>Descripcion: </label></td></tr>
-                        <tr><td><input type="text" name="descripcion" required></td></tr>
+                        <tr><td colspan="2"><label>Descripcion (Maximo 500 caracteres): </label></td></tr>
+                        <tr><td><textarea name="descripcion" rows="4" cols="50"  maxlength="500" required></textarea></td></tr>
                         <tr><td colspan="2"><label>Imagen (Tamaño recomendado 268x249): </label></td></tr>
                         <tr><td><input type="file" name="imagen" required></td></tr>
                         <tr><td colspan="2"><label>Categoria: </label></td></tr>
-                        <tr><td><input type="text" name="categoria" required></td></tr>
+                        <tr><td>
+                                <select name="categoria" id="cat">
+                                 <option>Ingrese una categoria</option>
+                                 <option value="1">PANES</option>
+                                 <option value="2">PASTELES</option>
+                                </select>
+                        </td></tr>
                         <tr><td colspan="2"><label>Precio: </label></td></tr>
-                        <tr><td><input type="text" name="precio" required ></td></tr>
+                        <tr><td><input type="number" name="precio" required ></td></tr>
+                        <tr><td colspan="2"><label>Estado: </label></td></tr>
                         <tr><td><div id="content" style="padding:20px">
                             <label>Disponible</label>
                                 <input type="radio" id="Disponible" name="state" value="Disponible" style="margin-right: 10px" required>
@@ -53,8 +60,10 @@
                                 <input type="radio" id="nodisponible" name="state" value="No Disponible" required>
                         </div></td></tr>
                         <tr><td colspan="2"><label>Stock: </label></td></tr>
-                        <tr><td><input type="text" name="stock" required></td></tr>
-                        <tr><td><input type="submit" value="Ingresar Producto"/></td></tr>
+                        <tr><td><input type="number" name="stock" required></td></tr>
+                        <br>
+                        <br>
+                        <tr><td><input type="submit" value="Ingresar Producto" id="botoncin"/></td></tr>
                         <%
                         if(status!=null){
                         %>
@@ -70,5 +79,17 @@
                 </form>
             <a href="javascript:window.history.go(-1);" style="float:left; border:2px black solid; background-color:gainsboro;">Volver al listado</a>
         </center>
+            <script>
+                window.onload=function()
+                {
+                  var elemento=document.getElementById("botoncin");
+                  elemento.onmouseover = function(e) {
+                        var cat = document.getElementById("cat").value;              
+                        if("Ingrese una categoria" == cat){
+                            alert("Seleccione una CATEGORIA");
+                        }
+                  };
+                };
+        </script>
     </body>
 </html>

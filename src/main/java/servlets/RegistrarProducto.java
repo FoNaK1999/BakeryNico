@@ -38,7 +38,6 @@ public class RegistrarProducto extends HttpServlet {
         
         ModeloAdmin mad = new ModeloAdmin();
         
-        int id = Integer.parseInt(request.getParameter("id"));
         String nombre = request.getParameter("nombreProd");
         String descripcion = request.getParameter("descripcion");
         Part archivo = request.getPart("imagen");
@@ -52,10 +51,10 @@ public class RegistrarProducto extends HttpServlet {
         archivo.write(context + File.separator + foto); // Se escribe el archivo al disco duro del servidor.
         String fotoName = "images\\home" + File.separator + foto;
         
-        if(mad.IngresarProducto(id, nombre, descripcion, fotoName, categoria, precio, stock, estado)==true){
-            response.sendRedirect("MantenedorProductos.jsp");
+        if(mad.IngresarProducto(nombre, descripcion, fotoName, categoria, precio, stock, estado)==true){
+            response.sendRedirect("MantenedorProducto.jsp?status=1");
         }else{
-            response.sendRedirect("IngresarProducto.jsp?status=Error al ingresar producto.");
+            response.sendRedirect("IngresarProducto.jsp?status=2");
         }
         
         

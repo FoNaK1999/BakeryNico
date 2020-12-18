@@ -1,18 +1,26 @@
+<%@page import="controllers.ControladorVehiculo"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    int id = Integer.parseInt(request.getParameter("id"));
+    
+    String id = request.getParameter("id");
     String nombre = request.getParameter("nombre");
-    String descripcion = request.getParameter("descripcion");
-    int categoria = Integer.parseInt(request.getParameter("categoria"));
-    int precio = Integer.parseInt(request.getParameter("precio"));
-    int stock = Integer.parseInt(request.getParameter("stock"));
+    String apellido = request.getParameter("Apellido");
+    String fono = request.getParameter("fono");
+    String email = request.getParameter("email");
+    String ubicacion = request.getParameter("Ubicacion");
+    String pass = request.getParameter("pass");
+    String estado = request.getParameter("estado");
+    
+    
+    
+    String status = request.getParameter("status");
 %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-type" content="text/html" charset=UTF-8" />
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
-        <title>Modificar Producto</title>
+        <title>Modificar Administrador</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -54,41 +62,54 @@
                  </div>
           </nav> 
         <center>
-            <h1 align="center">Modificar Producto</h1>
-                <form action="updateProducto" method="post" enctype="multipart/form-data">
+            <h1 align="center">Modificar administrador</h1>
+                <form action="ActualizarAdmin" method="post">
                     <table>
-                        <tr><td colspan="2"><label>ID Producto: </label></td></tr>
-                        <tr><td><input type="text" name="id" value="<%=id%>" required readonly="readonly"></td></tr>
-                        <tr><td colspan="2"><label>Nombre Producto: </label></td></tr>
-                        <tr><td><input type="text" name="nombreProd" value="<%=nombre%>" required></td></tr>
-                        <tr><td colspan="2"><label>Descripcion (Maximo 500 caracteres): </label></td></tr>
-                        <tr><td><textarea name="descripcion" rows="4" cols="50"  maxlength="500" required><%=descripcion%></textarea></td></tr>
-                        <tr><td colspan="2"><label>Imagen (Tamaño recomendado 268x249): </label></td></tr>
-                        <tr><td><input type="file" name="imagen"></td></tr>
-                        <tr><td colspan="2"><label>Categoria: </label></td></tr>
-                        <tr><td>                        
-                                <select name="categoria">
-                                    <option value="<%=categoria%>">Dejar la misma</option>
-                                    <option value="1">PANES</option>
-                                    <option value="2">PASTELES</option>
-                                </select>
-                        </td></tr>
-                        <tr><td colspan="2"><label>Precio: </label></td></tr>
-                        <tr><td><input type="number" name="precio" value="<%=precio%>" required ></td></tr>
-                        <tr><td><label colspan="2">Cambiar estado:</label></td></tr>
+                        <tr><td colspan="2"><label>R.U.N: </label></td></tr>
+                        <tr><td><input type="text" name="idusu" value="<%=id%>" required readonly="readonly"></td></tr>
+                        <tr><td colspan="2"><label>Nombre: </label></td></tr>
+                        <tr><td><input type="text" name="nombre" value="<%=nombre%>" required readonly="readonly"></td></tr>
+                        <tr><td colspan="2"><label>Apellido: </label></td></tr>
+                        <tr><td><input type="text" name="apellido" value="<%=apellido%>" required readonly="readonly"></td></tr>                        
+                        <tr><td colspan="2"><label>Telefono: </label></td></tr>
+                        <tr><td><input type="text" maxlength="9" name="fono" onkeypress='return event.charCode >= 48 && event.charCode <= 57' value="<%=fono%>" required></td></tr>                        
+                        <tr><td colspan="2"><label>Direccion: </label></td></tr>
+                        <tr><td><input type="text" maxlength="500" name="ubicacion" value="<%=ubicacion%>" required ></td></tr>
+                        <tr><td colspan="2"><label>Correo electronico: </label></td></tr>
+                        <tr><td><input type="text" maxlength="150" name="email" value="<%=email%>" required "></td></tr>                        
+                        <tr><td colspan="2"><label>Password: </label></td></tr>
+                        <tr><td><input type="password" name="pass" value="<%=pass%>" required ></td></tr>
+                        <tr><td><label colspan="2">Estado:</label></td></tr>
                         <tr><td><div id="content" style="padding:20px">
                             <label>Disponible</label>
                                 <input type="radio"  name="state" value="Disponible" style="margin-right: 10px" required>
                             <label>No Disponible</label>
                                 <input type="radio"  name="state" value="No Disponible" required>
                                 </div></td></tr>
-                        <tr><td colspan="2"><label>Stock: </label></td></tr>
-                        <tr><td><input type="number" name="stock" value="<%=stock%>" required></td></tr>
                         <tr><td><input type="submit" value="Actualizar"/></td></tr>
                     </table>
                 </form>
+                        <%
+                        if(status!=null){
+                        %>
+                        <p><strong style="color:red;"><%=status%></strong></p>
+                        <%
+                        }else{
+                        %>
+                        <p><strong style="color:red;"> </strong></p>
+                        <%
+                        }    
+                        %>
             <a href="javascript:window.history.go(-1);" style="float:left; border:2px black solid; background-color:gainsboro;">Volver al listado</a>
         </center>
+            
+            <script>
+            function validaNumericos(event) {
+                if(event.charCode >= 48 && event.charCode <= 57){                             
+                  return true;
+                 }
+                 return false;
+            }
+            </script>
     </body>
 </html>
-

@@ -43,19 +43,19 @@
 					<div class="col-sm-6">
 						<div class="contactinfo">
 							<ul class="nav nav-pills">
-								<li><a href=""><i class="fa fa-phone"></i> +2 95 01 88 821</a></li>
-								<li><a href=""><i class="fa fa-envelope"></i> info@domain.com</a></li>
+								<li><a href=""><i></i></a></li>
+								<li><a href=""><i></i></a></li>
 							</ul>
 						</div>
 					</div>
 					<div class="col-sm-6">
 						<div class="social-icons pull-right">
 							<ul class="nav navbar-nav">
-								<li><a href=""><i class="fa fa-facebook"></i></a></li>
+								<!--<li><a href=""><i class="fa fa-facebook"></i></a></li>
 								<li><a href=""><i class="fa fa-twitter"></i></a></li>
 								<li><a href=""><i class="fa fa-linkedin"></i></a></li>
 								<li><a href=""><i class="fa fa-dribbble"></i></a></li>
-								<li><a href=""><i class="fa fa-google-plus"></i></a></li>
+								<li><a href=""><i class="fa fa-google-plus"></i></a></li>-->
 							</ul>
 						</div>
 					</div>
@@ -72,24 +72,24 @@
 						</div>
 						<div class="btn-group pull-right">
 							<div class="btn-group">
-								<button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
+								<!--<button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
 									USA
 									<span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu">
 									<li><a href="">Canada</a></li>
-									<li><a href="">UK</a></li>
+									<li><a href="">UK</a></li>-->
 								</ul>
 							</div>
 							
 							<div class="btn-group">
-								<button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
+								<!--<button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
 									DOLLAR
 									<span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu">
 									<li><a href="">Canadian Dollar</a></li>
-									<li><a href="">Pound</a></li>
+									<li><a href="">Pound</a></li>-->
 								</ul>
 							</div>
 						</div>
@@ -142,23 +142,22 @@
 						<div class="mainmenu pull-left">
 							<ul class="nav navbar-nav collapse navbar-collapse">
 								<li><a href="index.html">Home</a></li>
-								<li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
+								<li class="dropdown"><a>Tienda<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
-                                        <li><a href="shop.html">Products</a></li>
-										<li><a href="product-details.html" class="active">Product Details</a></li> 
-										<li><a href="checkout.html">Checkout</a></li> 
-										<li><a href="cart.html">Cart</a></li> 
-										<li><a href="login.html">Login</a></li> 
+                                            <li><a href="shop.jsp?idcat=1">Panes</a></li> 
+                                            <li><a href="shop.jsp?idcat=2">Pasteles</a></li> 
+                                            <li><a href="contact.jsp">Contactanos</a></li> 
+                                            <li><a href="recetas.jsp">Recetas</a></li>
                                     </ul>
                                 </li> 
-								<li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
-                                    <ul role="menu" class="sub-menu">
-                                        <li><a href="blog.html">Blog List</a></li>
-										<li><a href="blog-single.html">Blog Single</a></li>
-                                    </ul>
-                                </li> 
-								<li><a href="404.html">404</a></li>
-								<li><a href="contact-us.html">Contact</a></li>
+                                    <!--<li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
+                                        <ul role="menu" class="sub-menu">
+                                            <li><a href="blog.html">Blog List</a></li>
+                                            <li><a href="blog-single.html">Blog Single</a></li>
+                                        </ul>
+                                    </li>--> 
+								<!--<li><a href="404.html">404</a></li>
+								<li><a href="contact-us.html">Contact</a></li>-->
 							</ul>
 						</div>
 					</div>
@@ -177,9 +176,9 @@
 			<div class="row">
 				<div class="col-sm-3">
 					<div class="left-sidebar">
-						<h2>Category</h2>
+						<h2></h2>
 						<div class="panel-group category-products" id="accordian"><!--category-productsr-->
-							<div class="panel panel-default">
+							<!--<div class="panel panel-default">
 								<div class="panel-heading">
 									<h4 class="panel-title">
 										<a data-toggle="collapse" data-parent="#accordian" href="#sportswear">
@@ -196,21 +195,21 @@
 										</ul>
 									</div>
 								</div>
-							</div>
+							</div>-->
 	
 						</div><!--/category-products-->
 					
 						
 						<div class="price-range"><!--price-range-->
-							<h2>Price Range</h2>
+							<!--<h2>Price Range</h2>
 							<div class="well">
 								 <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]" id="sl2" ><br />
 								 <b>$ 0</b> <b class="pull-right">$ 600</b>
-							</div>
+							</div>-->
 						</div><!--/price-range-->
 						
 						<div class="shipping text-center"><!--shipping-->
-							<img src="images/home/shipping.jpg" alt="" />
+							<img src="images/home/bannervertical.png" height="450px" width="300px" alt="" />
 						</div><!--/shipping-->
 						
 					</div>
@@ -545,8 +544,8 @@
 			</div>
 		</div>
 	</section>
-	
-	<footer id="footer"><!--Footer-->
+	<!--Footer-->
+	<!--<footer id="footer">
 		<div class="footer-top">
 			<div class="container">
 				<div class="row">
@@ -702,7 +701,8 @@
 			</div>
 		</div>
 		
-	</footer><!--/Footer-->
+	</footer>-->
+        <!--/Footer-->
 	
 
   

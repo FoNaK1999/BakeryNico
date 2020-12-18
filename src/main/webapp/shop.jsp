@@ -45,19 +45,19 @@
 					<div class="col-sm-6 ">
 						<div class="contactinfo">
 							<ul class="nav nav-pills">
-								<li><a href=""><i class="fa fa-phone"></i> +2 95 01 88 821</a></li>
-								<li><a href=""><i class="fa fa-envelope"></i> info@domain.com</a></li>
+								<li><a href=""><i ></i> </a></li>
+								<li><a href=""><i ></i> </a></li>
 							</ul>
 						</div>
 					</div>
 					<div class="col-sm-6">
 						<div class="social-icons pull-right">
 							<ul class="nav navbar-nav">
-								<li><a href=""><i class="fa fa-facebook"></i></a></li>
+								<!--<li><a href=""><i class="fa fa-facebook"></i></a></li>
 								<li><a href=""><i class="fa fa-twitter"></i></a></li>
 								<li><a href=""><i class="fa fa-linkedin"></i></a></li>
 								<li><a href=""><i class="fa fa-dribbble"></i></a></li>
-								<li><a href=""><i class="fa fa-google-plus"></i></a></li>
+								<li><a href=""><i class="fa fa-google-plus"></i></a></li>-->
 							</ul>
 						</div>
 					</div>
@@ -72,7 +72,7 @@
 						<div class="logo pull-left">
 							<a href="index.html"><img src="img/logo022.png" width="100" height="80" alt="" /></a>
 						</div>
-						<div class="btn-group pull-right">
+						<!--<div class="btn-group pull-right">
 							<div class="btn-group">
 								<button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
 									USA
@@ -94,7 +94,7 @@
 									<li><a href="">Pound</a></li>
 								</ul>
 							</div>
-						</div>
+						</div>-->
 					</div>
 					<div class="col-sm-8">
 						<div class="shop-menu pull-right">
@@ -139,24 +139,23 @@
 						<div class="mainmenu pull-left">
 							<ul class="nav navbar-nav collapse navbar-collapse">
 								<li><a href="index.html">Home</a></li>
-								<li class="dropdown"><a href="#" class="active">Shop<i class="fa fa-angle-down"></i></a>
+								<li class="dropdown"><a>Tienda<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
-                                        <li><a href="shop.html" class="active">Products</a></li>
-										<li><a href="product-details.html">Product Details</a></li> 
-										<li><a href="checkout.html">Checkout</a></li> 
-										<li><a href="cart.html">Cart</a></li> 
-										<li><a href="login.html">Login</a></li> 
+                                            <li><a href="shop.jsp?idcat=1">Panes</a></li> 
+                                            <li><a href="shop.jsp?idcat=2">Pasteles</a></li> 
+                                            <li><a href="contact.jsp">Contactanos</a></li> 
+                                            <li><a href="recetas.jsp">Recetas</a></li>
                                     </ul>
                                 </li> 
-				<li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
+				<!--<li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
                                         <li><a href="blog.html">Blog List</a></li>
-										<li><a href="blog-single.html">Blog Single</a></li>
+					<li><a href="blog-single.html">Blog Single</a></li>
                                     </ul>
                                 </li> 
 								<li><a href="404.html">404</a></li>
 								<li><a href="contact-us.html">Contact</a></li>
-							</ul>
+							</ul>-->
 						</div>
 					</div>
 					<div class="col-sm-3">
@@ -338,8 +337,8 @@
 			</div>
 		</div>
 	</section>
-	
-	<footer id="footer"><!--Footer-->
+	<!--Footer-->
+	<!--<footer id="footer">
 		<div class="footer-top">
 			<div class="container">
 				<div class="row">
@@ -420,7 +419,7 @@
 			</div>
 		</div>
 		
-		<div class="footer-widget">
+		<!--<div class="footer-widget">
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-2">

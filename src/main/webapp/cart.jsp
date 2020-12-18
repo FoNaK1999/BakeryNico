@@ -36,6 +36,11 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
     <script src="js/popupfunction.js" type="text/javascript"></script>
+        <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head><!--/head-->
 
 <body>
@@ -46,19 +51,19 @@
 					<div class="col-sm-6">
 						<div class="contactinfo">
 							<ul class="nav nav-pills">
-								<li><a href=""><i class="fa fa-phone"></i> +2 95 01 88 821</a></li>
-								<li><a href=""><i class="fa fa-envelope"></i> info@domain.com</a></li>
+								<li><a href=""><i ></i> </a></li>
+								<li><a href=""><i ></i></a></li>
 							</ul>
 						</div>
 					</div>
 					<div class="col-sm-6">
 						<div class="social-icons pull-right">
 							<ul class="nav navbar-nav">
-								<li><a href=""><i class="fa fa-facebook"></i></a></li>
+								<!--<li><a href=""><i class="fa fa-facebook"></i></a></li>
 								<li><a href=""><i class="fa fa-twitter"></i></a></li>
 								<li><a href=""><i class="fa fa-linkedin"></i></a></li>
 								<li><a href=""><i class="fa fa-dribbble"></i></a></li>
-								<li><a href=""><i class="fa fa-google-plus"></i></a></li>
+								<li><a href=""><i class="fa fa-google-plus"></i></a></li>-->
 							</ul>
 						</div>
 					</div>
@@ -73,7 +78,7 @@
 						<div class="logo pull-left">
                                                     <a href="index.html"><img src="img/logo022.png" width="100" height="80" alt="" /></a>
 						</div>
-						<div class="btn-group pull-right">
+						<!--<div class="btn-group pull-right">
 							<div class="btn-group">
 								<button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
 									USA
@@ -95,7 +100,7 @@
 									<li><a href="">Pound</a></li>
 								</ul>
 							</div>
-						</div>
+						</div>-->
 					</div>
 					<div class="col-sm-8">
 						<div class="shop-menu pull-right">
@@ -141,16 +146,15 @@
 						<div class="mainmenu pull-left">
 							<ul class="nav navbar-nav collapse navbar-collapse">
 								<li><a href="index.html">Home</a></li>
-								<li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
+								<li class="dropdown"><a >Tienda<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
-                                        <li><a href="shop.html">Products</a></li>
-										<li><a href="product-details.html">Product Details</a></li> 
-										<li><a href="checkout.html">Checkout</a></li> 
-										<li><a href="cart.html" class="active">Cart</a></li> 
-										<li><a href="login.html">Login</a></li> 
+                                            <li><a href="shop.jsp?idcat=1">Panes</a></li> 
+                                            <li><a href="shop.jsp?idcat=2">Pasteles</a></li> 
+                                            <li><a href="contact.jsp">Contactanos</a></li> 
+                                            <li><a href="recetas.jsp">Recetas</a></li> 
                                     </ul>
                                 </li> 
-								<li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
+								<!--<li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
                                         <li><a href="blog.html">Blog List</a></li>
 										<li><a href="blog-single.html">Blog Single</a></li>
@@ -158,7 +162,7 @@
                                 </li> 
 								<li><a href="404.html">404</a></li>
 								<li><a href="contact-us.html">Contact</a></li>
-							</ul>
+							</ul>-->
 						</div>
 					</div>
 					<div class="col-sm-3">
@@ -173,17 +177,17 @@
 
 	<section id="cart_items">
 		<div class="container">
-			<div class="breadcrumbs">
+			<!--<div class="breadcrumbs">
 				<ol class="breadcrumb">
 				  <li><a href="#">Home</a></li>
 				  <li class="active">Shopping Cart</li>
 				</ol>
-			</div>
+			</div>-->
 			<div class="table-responsive cart_info" id="cart-container">
                             <table class="table table-condensed" id="shop-table">
 					<thead>
 						<tr class="cart_menu">
-							<td class="image">Item</td>
+							<td class="image">Articulo</td>
 							<td class="description"></td>
 							<td class="price">Precio</td>
 							<td class="quantity">Cantidad</td>
@@ -252,10 +256,10 @@
 
 	<section id="do_action">
 		<div class="container">
-			<div class="heading">
+			<!--<div class="heading">
 				<h3>What would you like to do next?</h3>
 				<p>Choose if you have a discount code or reward points you want to use or would like to estimate your delivery cost.</p>
-			</div>
+			</div>-->
 			<div class="row">
 				<div class="col-sm-6">
 					<!--<div class="chose_area">
@@ -311,14 +315,8 @@
 						<a class="btn btn-default check_out" href="">Continue</a>
 					</div>-->
 				</div>
-				<div class="col-sm-6">
-					<div class="total_area">
-						<ul>
-                                                    <li>Cart Sub Total <span id="txt-subtotal">$<%= total%></span></li>
-							<li>Eco Tax <span>$0.0</span></li>
-							<li>Shipping Cost <span>Free</span></li>
-                                                        <li>Total <span id="txt-total"><%= total%></span></li>
-						</ul>
+				<div class="col-lg-12">
+					<div>
                                                 <%
                                                 if(miusuario==null || error == "true" ){
                                                 %>
@@ -346,10 +344,54 @@
                                                     </div>
                                                 <!--fin modal-->
                                                 <%
-                                                    }else{
+                                                    }else if(articulos == null){
                                                 %>
-                                                        <!--<a class="btn btn-default check_out" href="PaginaTest.jsp">probar</a>-->
-                                                <a class="btn btn-default check_out" href="pago.jsp?total=<%=total%>">PAGAR</a>                                              
+                                                <!-- Button trigger modal -->
+                                                    <button class="btn btn-default check_out" data-toggle="modal" data-target="#exampleModal" >Pagar</button>
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                      <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                          <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Iniciar Sesion</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                              <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                          </div>
+                                                          <div class="modal-body">
+                                                              <h3>Para poder pagar es necesario que inicie sesion.</h3>
+                                                          </div>
+                                                          <div class="modal-footer">
+                                                            <!--<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>-->
+                                                            <button type="submit" class="btn btn-primary" onclick="location.href='login.jsp'">Iniciar Sesion</button>
+                                                          </div>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                <!--fin modal-->
+                                                <%
+                                                    }else{
+
+                                                %>
+                                                <ul>
+                                                    <li>
+                                                        <div class="row">
+                                                            <div class="col s12 m6">
+                                                              <div class="card blue-grey darken-1">
+                                                                <div class="card-content white-text">
+                                                                  <span class="card-title">¡Felicidades!</span>
+                                                                  <p>Esta a punto de proceder al pago, se le mostrará un listado de los productos finales a comprar, siga las instrucciones para completar el proceso.</p>
+                                                                </div>
+                                                                <div class="card-action">
+                                                                  <a >Monto Total: </a>
+                                                                  <a >$<%=total%></a>
+                                                                </div>
+                                                              </div>
+                                                            </div>
+                                                          </div>
+                                                    </li>                                                  
+						</ul>
+                                                <a class="btn btn-default check_out" href="pago.jsp?total=<%=total%>">PAGAR</a>   
                                                 <%
                                                     }
                                                 %>    

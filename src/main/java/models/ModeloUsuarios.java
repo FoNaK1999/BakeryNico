@@ -1,5 +1,6 @@
 
 package models;
+import classes.Administrador;
 import classes.Producto;
 import classes.Session;
 import classes.Usuarios;
@@ -157,6 +158,42 @@ public class ModeloUsuarios extends Conexion {
         return false;                       
     }
     
+        public boolean RegistrarAdmin(String id, String nombre, String apellido, String fono, String ubicacion, String mail, String pass, String estado){
+        PreparedStatement pst = null;
+        try{
+            String sql = "insert into administrador (id_adm,nombre_adm,apellido_adm,telefono_adm,ubicacion_adm,mail,pass_adm,estado_adm) values (?,?,?,?,?,?,?,?)";
+            pst = getConnection().prepareStatement(sql);
+            pst.setString(1, id);
+            pst.setString(2, nombre);
+            pst.setString(3, apellido);
+            pst.setString(4, fono);
+            pst.setString(5, ubicacion);
+            pst.setString(6, mail);
+            pst.setString(7, pass);
+            pst.setString(8, estado);
+            pst.executeUpdate();
+            
+            if(pst != null){
+                return true;
+            }
+            
+        }catch(SQLException ex){
+            System.out.println("Error al insertar registro" + ex);
+        }finally{
+            try{
+                if(getConnection() != null){
+                    getConnection().close();
+                }
+                if(pst != null){
+                    pst.close();
+                }
+            }catch(Exception ex){
+                
+            }
+        }
+        return false;                       
+    }
+    
     public ArrayList<Usuarios> getListUsuarios() throws SQLException{
         ArrayList<Usuarios> usuarios = new ArrayList<>();
         PreparedStatement pst = null;
@@ -184,6 +221,35 @@ public class ModeloUsuarios extends Conexion {
             }
         }
         return usuarios;
+    }
+    
+        public ArrayList<Administrador> getListUsuarios2() throws SQLException{
+        ArrayList<Administrador> admin = new ArrayList<>();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        try{
+            String sql = "select * from administrador"; 
+            pst = getConnection().prepareStatement(sql);
+            rs = pst.executeQuery();
+            while(rs.next()){
+                admin.add(new Administrador(rs.getString("id_adm"),rs.getString("nombre_adm"),rs.getString("apellido_adm"),rs.getString("telefono_adm"),rs.getString("ubicacion_adm"),rs.getString("mail"),rs.getString("pass_adm"),rs.getString("estado_adm")));
+            }
+        }catch(SQLException e){
+            System.out.println("Error al obtener usuarios");
+        }finally{
+            try{
+                if(rs != null){
+                    if(pst != null){
+                        if(getConnection() != null){
+                            getConnection().close();
+                        }
+                    }
+                }
+            }catch(Exception e){
+                System.out.println("Error");
+            }
+        }
+        return admin;
     }
      
     public boolean UpdateUsuarios(String id, String nombre, String apellido, String fono, String ubicacion, String email, String pass,String estado){        
@@ -218,24 +284,72 @@ public class ModeloUsuarios extends Conexion {
       return false;
     }
     
+    public boolean UpdateAdmin(String id, String nombre, String apellido, String fono, String ubicacion, String email, String pass,String estado){        
+        PreparedStatement pst = null;
+        try{
+        String sql = "update administrador set nombre_adm = ? , apellido_adm = ? , telefono_adm = ? , ubicacion_adm = ? , mail = ?, pass_adm = ?, estado_adm= ? where id_adm = ?";
+        pst = getConnection().prepareStatement(sql);
+        pst.setString(1, nombre);
+        pst.setString(2, apellido);
+        pst.setString(3, fono);
+        pst.setString(4, ubicacion);
+        pst.setString(5, email );
+        pst.setString(6, pass);
+        pst.setString(7, estado);
+        pst.setString(8, id);
+        pst.executeUpdate();
+        return true;
+        }catch(SQLException ex){
+            System.out.println("Error al actualizar administrador");
+        }finally{
+            try{
+                    if(pst != null){
+                        if(getConnection() != null){
+                            getConnection().close();
+                        }
+                    }
+            }catch(SQLException e){
+                System.out.println("Error");
+            }
+        
+        }
+      return false;
+    }
+    
    public boolean EliminarUsuario (String id){
         PreparedStatement pst = null;
         try{
-            String sql = "UPDATE cliente set estado = 'No disponible' "
+            String sql = "UPDATE cliente set estado_usu = 'Eliminado' "
                     + "WHERE id_usu = ?";
             
             pst = getConnection().prepareStatement(sql);
             pst.setString(1, id);
             pst.executeUpdate();
-        }catch(Exception ex){
+        }catch(SQLException ex){
+            System.out.println("Error");
+        }
+        return false;
+    }
+   
+      public boolean EliminarAdmin (String id){
+        PreparedStatement pst = null;
+        try{
+            String sql = "UPDATE administrador set estado_adm = 'Eliminado' "
+                    + "WHERE id_adm = ?";
+            
+            pst = getConnection().prepareStatement(sql);
+            pst.setString(1, id);
+            pst.executeUpdate();
+        }catch(SQLException ex){
             System.out.println("Error");
         }
         return false;
     }
         
     //Prueba de conexion y busqueda de usuarios
-    public static void main(String[] args){
+    public static void main(String[] args) throws SQLException{
        ModeloUsuarios mu = new ModeloUsuarios();
+       mu.getListUsuarios2();
     }
     //Fin conexion y busqueda de usuarios
 

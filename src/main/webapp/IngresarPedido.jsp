@@ -46,7 +46,7 @@
                         <!--solicita-->
                         <tr><td colspan="2"><label id="textolabel">INGRESAR CANTIDAD DE PRODUCTOS: </label></td></tr>
                         <tr><td><input type="text" name="cantidadProductos" id="cantprod" required></td></tr>
-                        <tr><td><input type="button" onclick="probar();" value="testear"></td></tr>
+                        <tr><td><input type="button" onclick="probar();" value="Agregar productos" id="botonprod"></td></tr>
                         <tr id="resultado"></tr>
                         <br>
                         <br>
@@ -54,14 +54,14 @@
                         <tr><td><input type="date" name="fecha" required></td></tr>
                         <tr><td colspan="2"><label>RUT CLIENTE: </label></td></tr>
                         <tr><td>
-                                <select name="rut">
+                                <select name="rut" id="usu">
                                  <option>Seleccione un cliente</option>
                                     <%=cu.getRutUsuarios()%>
                                 </select>
                         </td></tr>
                         <tr><td colspan="2"><label>MATRICULA: </label></td></tr>
                         <tr><td>
-                                <select name="matricula">
+                                <select name="matricula" id="matricula">
                                  <option>Seleccione una matricula</option>
                                     <%=cv.getVehiculo()%>
                                 </select>
@@ -92,19 +92,39 @@
                     </table>
                     <br>
                     <br>
-                    <input type="submit" value="Registrar Pedido"/>
+                    <input type="submit" value="Registrar Pedido" id="botoncin"/>
                 </form>
             <a href="javascript:window.history.go(-1);" style="float:left; border:2px black solid; background-color:gainsboro;">Volver al listado</a>
         </center>      
         <script>          
-    
+            
+                window.onload=function()
+                {
+                  var elemento=document.getElementById("botoncin");
+                  elemento.onmouseover = function(e) {
+                        var usuario = document.getElementById("usu").value;
+                        var patente = document.getElementById("matricula").value;               
+                                                                                              
+                        if("Seleccione un cliente" == usuario && "Seleccione una matricula" == patente){
+                            
+                            alert("Falta seleccionar en los desplegables de RUT CLIENTE y MATRICULA");
+                            
+                        }else if("Seleccione un cliente" == usuario){
+                            alert("Seleccione un CLIENTE");
+                        }else if("Seleccione una matricula" == patente){
+                            alert("Seleccione una MATRICULA");
+                        }
+                  };
+                };
+                                             
+            
             function probar(){
                         var cantprod = document.getElementById("cantprod").value;
                         for(var i = 1; i <= cantprod; i++){
                             var id = "resultado"+i.toString();
                             var cantidad = "cantidad"+i.toString();
-                            
-                            document.getElementById("resultado").innerHTML += "<select id='"+id+"' name='"+id+"'></select>\n<label>CANTIDAD: </label><input type='text' name='"+cantidad+"'>";
+                            //document.getElementById("resultado").innerHTML += "<select id='"+id+"' name='"+id+"'></select>\n<label>CANTIDAD: </label><input type='text' name='"+cantidad+"'>";
+                            document.getElementById("resultado").innerHTML += "<label for='exampleFormControlTextarea1' class='form-label'>PRODUCTO: </label><div class='mb-3'><select id='"+id+"' name='"+id+"' required></select></div><div class='mb-3'><label for='exampleFormControlTextarea1' class='form-label'>CANTIDAD:</label><input type='number' class='form-control' id='exampleFormControlTextarea1' rows='3' name='"+cantidad+"' placeholder='Ingresar la cantidad' required></div>";  
                         }
                         
                         combobox();
@@ -126,12 +146,16 @@
                     }
                 });
             }
+            
+            
                 
         function Eliminar(){
                         //Input
                         var  cajita = document.getElementById("cantprod");
                         cajita.type = "hidden";
                         
+                        //var boton = document.getElementById("botoncin");
+                        //boton.type = 
                         //Label
                         var label = document.getElementById("textolabel");
                         var padre2 = document.getElementById("productos");         
@@ -139,14 +163,14 @@
                         padre2.removeChild(label);
                         
                         //Boton
-                        var botoncito = document.getElementById("botoncito");
+                        var botoncito = document.getElementById("botonprod");
                         var padre3 = document.getElementById("productos");         
                         padre3 = botoncito.parentNode;
                         padre3.removeChild(botoncito);                       
                 }  
                 
         </script>
-                <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
     </body>
 </html>

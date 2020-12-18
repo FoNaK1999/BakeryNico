@@ -5,8 +5,12 @@
  */
 package servlets;
 
+import classes.Administrador;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +21,7 @@ import models.ModeloUsuarios;
  *
  * @author marti
  */
-public class ingresarUsu extends HttpServlet {
+public class Pruebas extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -29,41 +33,26 @@ public class ingresarUsu extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-        
+        try (PrintWriter out = response.getWriter()) {
         ModeloUsuarios mu = new ModeloUsuarios();
-        ModeloUsuarios mu2 = new ModeloUsuarios();
-        
-        String rut = request.getParameter("idusu");
-        String nombre = request.getParameter("nombre");
-        String apellido = request.getParameter("apellido");
-        String fono = request.getParameter("fono");
-        String ubicacion = request.getParameter("ubicacion");
-        String email = request.getParameter("email");
-        String pass = request.getParameter("pass");
-        String rol = request.getParameter("rol");
-        String estado = "Disponible";
-        
-        
-        switch(rol){
-            case "2":
-                if(mu.RegistrarUsuario(rut, nombre, apellido, fono, ubicacion, email, pass, estado)){
-                    response.sendRedirect("mantenedorUsuarios.jsp?status=1");
-                    break;
-                }else{
-                    response.sendRedirect("mantenedorUsuarios.jsp?status=2");
-                    break;
+        String htmlcode = "";       
+                for(Administrador adm : mu.getListUsuarios2()){
+                    htmlcode += "<tr>\n" +
+        "                             <td class=\"column1\">"+adm.getId()+"</>\n" +
+        "                             <td class=\"column1\">"+adm.getNombre()+"</td>\n" +
+        "                             <td class=\"column1\">"+adm.getApellido()+"</td>\n" +
+        "                             <td class=\"column1\">"+adm.getFono()+"</td>\n" +
+        "                             <td class=\"column1\">"+adm.getUbicacion()+"</td>\n" +
+        "                             <td class=\"column1\">"+adm.getMail()+"</td>\n" +
+        "                             <td class=\"column1\">"+adm.getPass()+"</td>\n" +
+        "                             <td class=\"column1\">"+adm.getEstado()+"</td>\n" +                          
+        "                             <td class=\"column1\"><a href='ActualizarAdministrador.jsp?id="+adm.getId()+"&nombre="+adm.getNombre()+"&Apellido="+adm.getApellido()+"&fono="+adm.getFono()+"&Ubicacion="+adm.getUbicacion()+"&email="+adm.getMail()+"&pass="+adm.getPass()+"&estado="+adm.getEstado()+"'>Modificar</a><br><br><form action='BorrarAdmin' method='post'><input type='text' name='hidden' style='display:none;' value='"+adm.getId()+"'><input type='submit' value='Eliminar'></form></td>\n" +
+        "                       </tr>";
                 }
-            
-            case "1":
-                if(mu2.RegistrarAdmin(rut, nombre, apellido, fono, ubicacion, email, pass, estado)){
-                    response.sendRedirect("mantenedorUsuarios.jsp?status=1");
-                }else{
-                    response.sendRedirect("mantenedorUsuarios.jsp?status=2");
-                }
-                
-        }                            
+                out.println(htmlcode);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -78,7 +67,11 @@ public class ingresarUsu extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(Pruebas.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -92,7 +85,11 @@ public class ingresarUsu extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(Pruebas.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

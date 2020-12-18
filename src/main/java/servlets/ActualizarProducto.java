@@ -61,13 +61,13 @@ public class ActualizarProducto extends HttpServlet {
             if(foto.isEmpty()){                                         
                 String img = producto.getImg();
                 mad.UpdateProductos(id, nombre, descripcion, img, categoria, precio, stock,estado);      
-                response.sendRedirect("MantenedorProducto.jsp?status = No cambio la imagen");                
+                response.sendRedirect("MantenedorProducto.jsp?status=1");                
             }else{
                 archivo.write(context + File.separator + foto); // Se escribe el archivo al disco duro del servidor.
 
                 String fotoName = "images\\home" + File.separator + foto;
                 mad.UpdateProductos(id, nombre, descripcion, fotoName, categoria, precio, stock,estado);        
-                response.sendRedirect("MantenedorProducto.jsp?status= Cambio la imagen");
+                response.sendRedirect("MantenedorProducto.jsp?status=1");
             }
             
 

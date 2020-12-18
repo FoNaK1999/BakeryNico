@@ -15,9 +15,12 @@ public class ModeloAdmin extends Conexion {
     
     public boolean UpdateProductos(int id, String nombre, String descripcion, String img, int cat, int precio, int stock, String estado){        
         PreparedStatement pst = null;
+        System.out.println(id+" "+nombre+" "+descripcion+" "+img+" "+cat+" "+precio+" "+stock+" "+estado);
+        
+        Conexion2 con2 = new Conexion2();
         try{
         String sql = "update productos set nombre_producto = ? , descripcion = ? , img_producto = ? , id_categoria_prod = ? , precio_producto = ?, stock_producto = ?, estado = ? where id_producto = ?";
-        pst = getConnection().prepareStatement(sql);
+        pst = con2.conectarMySQL().prepareStatement(sql);
         pst.setString(1, nombre);
         pst.setString(2, descripcion);
         pst.setString(3, img);
@@ -45,19 +48,18 @@ public class ModeloAdmin extends Conexion {
       return false;
     }
     
-    public boolean IngresarProducto(int id,String nombre, String descripcion, String img, int categoria, int precio, int stock,String estado){
+    public boolean IngresarProducto(String nombre, String descripcion, String img, int categoria, int precio, int stock,String estado){
         PreparedStatement pst = null;
         try{
-        String sql = "insert into productos (id_producto,nombre_producto,descripcion,img_producto,id_categoria_prod,precio_producto,stock_producto,estado) values (?,?,?,?,?,?,?,?)";
+        String sql = "insert into productos (nombre_producto,descripcion,img_producto,id_categoria_prod,precio_producto,stock_producto,estado) values (?,?,?,?,?,?,?)";
         pst = getConnection().prepareStatement(sql);
-        pst.setInt(1, id);
-        pst.setString(2, nombre);
-        pst.setString(3, descripcion);
-        pst.setString(4, img);
-        pst.setInt(5, categoria);
-        pst.setInt(6, precio);
-        pst.setInt(7, stock);
-        pst.setString(8, estado);
+        pst.setString(1, nombre);
+        pst.setString(2, descripcion);
+        pst.setString(3, img);
+        pst.setInt(4, categoria);
+        pst.setInt(5, precio);
+        pst.setInt(6, stock);
+        pst.setString(7, estado);
         pst.executeUpdate();
         return true;
         }catch(Exception ex){
@@ -82,8 +84,9 @@ public class ModeloAdmin extends Conexion {
     
     public boolean Eliminar (int id){
         PreparedStatement pst = null;
+        
         try{
-            String sql = "UPDATE productos set estado = 'No disponible' "
+            String sql = "UPDATE productos set estado = 'Eliminado' "
                     + "WHERE id_producto = ?";
             
             pst = getConnection().prepareStatement(sql);

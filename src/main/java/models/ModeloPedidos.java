@@ -6,6 +6,7 @@
 package models;
 
 import classes.Pedido;
+import classes.Producto;
 import classes.Proveedor;
 import classes.Venta;
 import classes.vehiculo;
@@ -183,32 +184,7 @@ public String getAllAutoPatente() throws SQLException{
             }
         }
          return patente;
-    } 
-    
-    public Pedido getPedido(){
-        Pedido pedido = null;
-        PreparedStatement pst = null;
-        ResultSet rs = null;
-        try {
-            String sql = "select * from pedidos)";
-            pst = getConnection().prepareCall(sql);
-            rs = pst.executeQuery();
-            while(rs.next()){
-                pedido = new Pedido(rs.getInt("id_ped"), rs.getString("fecha_ped"),rs.getString("estado_ped"), rs.getString("id_usu_ped"), rs.getString("id_ve_ped"));
-            }
-        } catch (Exception e) {
-            
-        } finally{
-            try {
-                if(rs != null) rs.close();
-                if(pst != null) pst.close();
-                if(getConnection() != null) getConnection().close();
-            } catch (Exception e) {
-            }
-        }       
-        return pedido;
-        
-    }
+    }    
     
     public ArrayList<Venta> getListVenta() throws SQLException{
         ArrayList<Venta> venta = new ArrayList<>();
@@ -368,6 +344,35 @@ public String getAllAutoPatente() throws SQLException{
             }
         }
         return lastid;
+    }
+    
+    //Obtiene el stock de un producto
+    public int getStockProducto(int id){
+        Producto producto = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        int stock = 0;
+        try {
+            String sql = "select * from productos where id_productos = ?";
+            pst = getConnection().prepareStatement(sql);
+            pst.setInt(1, id);
+            rs = pst.executeQuery();
+            while(rs.next()){
+                producto = new Producto(rs.getInt("id_producto"), rs.getString("nombre_producto"),rs.getString("descripcion"), rs.getString("img_producto"), rs.getInt("id_categoria_prod"), rs.getInt("precio_producto"), rs.getInt("stock_producto"),rs.getString("estado"));
+                stock = rs.getInt("stock_producto");
+            }
+        } catch (Exception e) {
+            
+        } finally{
+            try {
+                if(rs != null) rs.close();
+                if(pst != null) pst.close();
+                if(getConnection() != null) getConnection().close();
+            } catch (Exception e) {
+            }
+        }       
+        return stock;
+        
     }
         
     

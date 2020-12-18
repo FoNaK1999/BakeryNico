@@ -43,7 +43,10 @@ public class ActualizarUsuario extends HttpServlet {
         String pass = request.getParameter("pass");
         String estado = request.getParameter("state");
         if(mu.UpdateUsuarios(id, nombre, apellido, fono, ubicacion, email, pass, estado)){
-            response.sendRedirect("mantenedorUsuarios.jsp");
+            response.sendRedirect("mantenedorUsuarios.jsp?status=1");
+            
+        }else{
+            response.sendRedirect("mantenedorUsuarios.jsp?status=2");
         }
         
         
