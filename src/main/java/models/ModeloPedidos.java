@@ -96,19 +96,20 @@ public class ModeloPedidos extends Conexion {
       return false;
     }
     
-    public boolean RegistrarSolicitar(int idprod, int cantidad, int idped, int rows){        
+    public boolean RegistrarSolicitar(int idprod, int cantidad, int idped, int rows, String estado){        
         PreparedStatement pst = null;
         ResultSet rs = null;
         try{
-        String sql = "insert into solicitar (cantidad_sol,id_producto_sol,id_ped_sol) values (?,?,?)";
+        String sql = "insert into solicitar (cantidad_sol,id_producto_sol,id_ped_sol,estado_sol) values (?,?,?,?)";
         pst = getConnection().prepareStatement(sql);
         pst.setInt(1,cantidad);  
         pst.setInt(2,idprod);  
-        pst.setInt(3,idped);  
+        pst.setInt(3,idped);
+        pst.setString(4,estado);
         pst.executeUpdate();
         return true;
-        }catch(Exception ex){
-            System.out.println("Error al obtener solicitud");
+        }catch(SQLException ex){
+            System.out.println("Error al registrar solicitud");
         }finally{
             try{
                     if(pst != null){
@@ -124,20 +125,19 @@ public class ModeloPedidos extends Conexion {
       return false;
     }
     //Insercion en tabla venta
-    public boolean RegistrarVenta(String id, int total, String tipopago, String estado, int idped){        
+    public boolean RegistrarVenta(int total, String tipopago, String estado, int idped){        
         PreparedStatement pst = null;
         ResultSet rs = null;   
         try{
-        String sql = "insert into venta (id_v, fecha_v, total_v, tipopago_v, estado_dv, id_ped_v) values (?,CURDATE(),?,?,?,?)";
+        String sql = "insert into venta (fecha_v, total_v, tipopago_v, estado_dv, id_ped_v) values (CURDATE(),?,?,?,?)";
         pst = getConnection().prepareStatement(sql);
-        pst.setString(1, id);
-        pst.setInt(2, total);
-        pst.setString(3, tipopago);
-        pst.setString(4, estado);
-        pst.setInt(5, idped);
+        pst.setInt(1, total);
+        pst.setString(2, tipopago);
+        pst.setString(3, estado);
+        pst.setInt(4, idped);
         pst.executeUpdate();
         return true;
-        }catch(Exception ex){
+        }catch(SQLException ex){
             System.out.println("Error al registrar venta");
         }finally{
             try{
@@ -146,7 +146,7 @@ public class ModeloPedidos extends Conexion {
                             getConnection().close();
                         }
                     }
-            }catch(Exception e){
+            }catch(SQLException e){
                 System.out.println("Error");
             }
         
@@ -216,12 +216,13 @@ public String getAllAutoPatente() throws SQLException{
     }
     
         public ArrayList<Pedido> getListPedidos() throws SQLException{
+        Conexion2 con2 = new Conexion2();
         ArrayList<Pedido> pedido = new ArrayList<>();
         PreparedStatement pst = null;
         ResultSet rs = null;
         try{
             String sql = "select * from pedidos";
-            pst = getConnection().prepareStatement(sql);
+            pst = con2.conectarMySQL().prepareStatement(sql);
             rs = pst.executeQuery();
             while(rs.next()){
                 pedido.add(new Pedido(rs.getInt("id_ped"),rs.getString("fecha_ped"),rs.getString("estado_ped"),rs.getString("id_usu_ped"),rs.getString("id_ve_ped")));
@@ -299,6 +300,61 @@ public String getAllAutoPatente() throws SQLException{
         }
       return false;
     }
+        
+    public boolean BorrarSolicitarProducto(int idproducto, int idped){        
+        PreparedStatement pst = null;       
+        
+        try{
+        String sql = "UPDATE solicitar set estado_sol = 'Eliminado' where id_ped_sol = ? and id_producto_sol = ? ";
+        pst = getConnection().prepareStatement(sql);
+        pst.setInt(1, idped);
+        pst.setInt(2, idproducto);
+        pst.executeUpdate();
+        return true;
+        }catch(SQLException ex){
+            System.out.println("Error al borrar producto de solicitar");
+        }finally{
+            try{
+                    if(pst != null){
+                        if(getConnection() != null){
+                            getConnection().close();
+                        }
+                    }
+            }catch(Exception e){
+                System.out.println("Error");
+            }
+        
+        }
+      return false;
+    }
+    
+    public boolean UpdateStockQuitar(int idproducto, int idped){        
+        PreparedStatement pst = null;       
+        
+        try{
+        String sql = "UPDATE productos set stock_producto = stock_producto + ? WHERE id_producto = ? ";
+        pst = getConnection().prepareStatement(sql);
+        pst.setInt(1, idped);
+        pst.setInt(2, idproducto);
+        pst.executeUpdate();
+        return true;
+        }catch(SQLException ex){
+            System.out.println("Error al borrar producto de solicitar");
+        }finally{
+            try{
+                    if(pst != null){
+                        if(getConnection() != null){
+                            getConnection().close();
+                        }
+                    }
+            }catch(Exception e){
+                System.out.println("Error");
+            }
+        
+        }
+      return false;
+    }
+    
     
     public int RegistrarPedidoFormulario(String fecha,String estado, String rutCliente, String matricula){
         PreparedStatement pst = null;
@@ -379,7 +435,6 @@ public String getAllAutoPatente() throws SQLException{
     public static void main(String[] args){
        ModeloPedidos mf = new ModeloPedidos();
        int total = 1500;
-       int idped = 66;
-       mf.RegistrarVenta("1", total, "VN","Aprobado", idped);               
+       int idped = 66;              
     }
 }

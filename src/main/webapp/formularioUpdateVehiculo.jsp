@@ -56,7 +56,7 @@
                             <label>No Disponible</label>
                                 <input type="radio" id="nodisponible" name="state" value="No Disponible" required>
                         </div></td></tr>
-                        <tr><td><input type="submit" value="Ingresar Producto"/></td></tr>
+                        <tr><td><input type="submit" value="Ingresar Vehiculo"/></td></tr>
                         <%
                         if(status!=null){
                         %>

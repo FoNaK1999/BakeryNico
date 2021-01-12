@@ -45,7 +45,7 @@ public class servletsolicita extends HttpServlet {
         
         int rows = Integer.parseInt(request.getParameter("rows"));
         int idped = Integer.parseInt(request.getParameter("idped"));
-        
+        String status = "Activo";
         boolean estado = false;
         
             
@@ -55,7 +55,7 @@ public class servletsolicita extends HttpServlet {
                 ModeloFactura mf = new ModeloFactura();
                 ModeloPedidos mp = new ModeloPedidos();
                                                
-                if(mf.RegistrarSolicitar(a.getIdProducto(), a.getCantidad(), idped, rows)){
+                if(mf.RegistrarSolicitar(a.getIdProducto(), a.getCantidad(), idped, rows, status)){
                     estado=true;
                     if(estado = true){
                         mp.UpdateStock(a.getCantidad(), a.getIdProducto());

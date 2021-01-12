@@ -120,6 +120,41 @@ public class ModeloUsuarios extends Conexion {
     }
     // Fin buscar usuario y mostrar nombre segun correo
     
+    public Session getNombreAdmin(String mail){
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        String nombre="";
+        String apellido="";
+        String fono="";
+        String id = "";
+        Session datos = null;
+        try {
+            String sql = "select id_adm,nombre_adm,apellido_adm,telefono_adm from administrador where mail= ? ";
+            pst = getConnection().prepareStatement(sql);
+            pst.setString(1, mail);
+            rs = pst.executeQuery();
+            while(rs.next()){
+                id = rs.getString("id_adm");
+                nombre = rs.getString("nombre_adm");
+                apellido = rs.getString("apellido_adm");
+                fono = rs.getString("telefono_adm");
+            }
+            datos = new Session(id,nombre,apellido,fono,mail);
+        } catch (Exception e) {
+            
+        } finally{
+            try {
+                if(rs != null) rs.close();
+                if(pst != null) pst.close();
+                if(getConnection() != null) getConnection().close();
+            } catch (Exception e) {
+            }
+        }       
+        return datos;
+        
+    }
+        
+        
     //Insertar Usuario(Cliente)
         
     public boolean RegistrarUsuario(String id, String nombre, String apellido, String fono, String ubicacion, String mail, String pass, String estado){

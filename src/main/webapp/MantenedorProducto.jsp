@@ -100,7 +100,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="alert alert-success" role="alert">
-                            !Se ha hecho el procedimiento con exito¡
+                            ¡Se ha hecho el procedimiento con exito!
                         </div>
                     </div>
                 </div>

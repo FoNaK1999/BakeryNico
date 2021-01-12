@@ -55,7 +55,11 @@ public class ValidarLogin extends HttpServlet {
             response.sendRedirect("shop.jsp?idcat=1");
         }else if(mu2.AutenticacionAdmin(mail, pass)==true){
             //Administrador
-                request.getSession().invalidate();            
+                miusuario= mu4.getNombreAdmin(mail);                        
+            
+                HttpSession misession= request.getSession(true);
+                misession.setAttribute("usuario",miusuario); 
+                
                 response.sendRedirect("mantenedor.jsp");               
         }else{
             response.sendRedirect("login.jsp?status=Correo o clave incorrectos");  

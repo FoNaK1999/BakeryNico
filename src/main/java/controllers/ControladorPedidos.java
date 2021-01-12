@@ -35,8 +35,17 @@ public class ControladorPedidos {
                     htmlcode2 += "<li class=\"list-group-item\"><strong>Nombre producto: </strong>"+soli.getNombreProd()+"          |          "+"<strong>CANTIDAD: </strong>"+soli.getCantidadProd()+"</li>";
                 }
             return htmlcode2;        
-    } 
+    }
     
+
+    public String VerPedidosCombobox() throws SQLException{
+            ModeloPedidos mp3 = new ModeloPedidos();      
+            String htmlcode3 = "";       
+                for(Pedido pedido : mp3.getListPedidos()){               
+                    htmlcode3 += "<option value="+pedido.getId()+">"+pedido.getId()+"</option>";
+                }
+            return htmlcode3;        
+    }
 
     
     

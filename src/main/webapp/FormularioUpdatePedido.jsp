@@ -16,8 +16,9 @@
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
         <title>Modificar Pedido</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="js/jquery-3.5.1.min.js" type="text/javascript"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         <link rel="shortcut icon" href="img/panaderia1.png" type="image/png">
         <meta charset="UTF-8">
@@ -38,10 +39,7 @@
             <h1 align="center">Modificar Pedido</h1>
                 <form action="UpdatePedido" method="post">
                     <table>
-                        <tr><td colspan="2"><label>MODIFICAR PRODUCTOS: </label></td></tr>
-                        <tr><td><input type="button" onclick="probar();" value="Agregar productos" id="botonprod"></td></tr>
                         <tr id="resultado"></tr>
-                        <tr><td colspan="2"><label>NUMERO PEDIDO: </label></td></tr>
                         <tr><td><input type="hidden" name="id" value="<%=id%>" required readonly="readonly"></td></tr>
                         <tr><td colspan="2"><label>FECHA: </label></td></tr>
                         <tr><td><input type="date" name="fecha" value="<%=fecha%>" required></td></tr>
@@ -72,4 +70,28 @@
             <a href="javascript:window.history.go(-1);" style="float:left; border:2px black solid; background-color:gainsboro;">Volver al listado</a>
         </center>
     </body>
+    
+    <script>               
+        function MostrarProductos2(){
+            var estado1 = document.getElementById("estado1").value;
+            var estado2 = document.getElementById("estado2").value;
+            var nombre = document.getElementsByName("verprod").value;
+            
+            console.log(estado1 + " " + estado2);
+            
+            if(estado1="Si"){
+                document.getElementById("resultado").innerHTML = "<td id='producto'>Estado 1</td>";
+            }else if(estado2="No"){
+                document.getElementById("resultado").innerHTML = "<td id='producto'>Estado 2</td>";
+            }
+            
+        }
+        
+        function Eliminar(){                       
+            var hijo = document.getElementById("productos");
+            var padre3 = document.getElementById("resultado");         
+            padre3.parentNode.removeChild(hijo);        
+        }
+        
+    </script>
 </html>

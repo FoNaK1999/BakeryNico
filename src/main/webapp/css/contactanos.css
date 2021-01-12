@@ -1,0 +1,65 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jun 16, 2020, 2:45:18 PM
+    Author     : Happy
+*/
+
+element.style {
+}
+html, body, div, span, applet, object, iframe, h3, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+    border: 0;
+    font-style: inherit;
+    font-weight: inherit;
+    margin: 0;
+    outline: 0;
+    padding: 0;
+    vertical-align: baseline;
+}
+.site-main {
+    clear: both;
+    margin: 0;
+    min-height: 400px;
+}
+.page-title {
+    margin-bottom: 40px;
+    padding: 35px 0;
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
+    vertical-align: top;
+    position: relative;
+    background-image: url(../img/contacto.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-color: #fff;
+    min-height: 130px;
+}
+.page-title-inner {
+    text-align: center;
+}
+.page-title .entry-title-main {
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: 500;
+    margin: 3px 0;
+    line-height: 26px;
+    display: inline-block;
+}
+.breadcrumbs, .woocommerce .woocommerce-breadcrumb, .woocommerce-page .woocommerce-breadcrumb {
+    font-size: 13px;
+    text-align: center;
+    line-height: 1.25;
+    margin: 6px 0;
+    color: #ffffff;
+}
+.breadcrumbs p {
+    margin: 0;
+}
+p {
+    margin-bottom: 24px;
+}

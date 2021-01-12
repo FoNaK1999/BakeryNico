@@ -176,6 +176,10 @@
         <servlet-name>BorrarAdmin</servlet-name>
         <servlet-class>servlets.BorrarAdmin</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ObtenerListadoProductosPedido</servlet-name>
+        <servlet-class>servlets.ObtenerListadoProductosPedido</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AddCart</servlet-name>
         <url-pattern>/agregarproducto</url-pattern>
@@ -351,6 +355,10 @@
     <servlet-mapping>
         <servlet-name>BorrarAdmin</servlet-name>
         <url-pattern>/BorrarAdmin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ObtenerListadoProductosPedido</servlet-name>
+        <url-pattern>/ObtenerListadoProductosPedido</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

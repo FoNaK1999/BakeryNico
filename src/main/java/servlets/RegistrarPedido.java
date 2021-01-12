@@ -38,6 +38,7 @@ public class RegistrarPedido extends HttpServlet {
         String rut = request.getParameter("rut");
         String matricula = request.getParameter("matricula");
         String state = request.getParameter("state");
+        String estadoSol = "Activo";
         int cantidadProd = Integer.parseInt(request.getParameter("cantidadProductos"));       
         
         int valor = mp.RegistrarPedidoFormulario(fecha, state, rut, matricula);
@@ -47,9 +48,9 @@ public class RegistrarPedido extends HttpServlet {
         if(valor > -1){
             for(int i=1;i<=cantidadProd;i++){
                 ModeloPedidos mp2 = new ModeloPedidos();
-                ModeloPedidos mp3 = new ModeloPedidos();
+                ModeloPedidos mp3 = new ModeloPedidos();                
                 System.out.println(request.getParameter("resultado" + i));
-                mp2.RegistrarSolicitar(Integer.parseInt(request.getParameter("resultado" + i)),Integer.parseInt(request.getParameter("cantidad" + i)), valor, i);
+                mp2.RegistrarSolicitar(Integer.parseInt(request.getParameter("resultado" + i)),Integer.parseInt(request.getParameter("cantidad" + i)), valor, i,estadoSol);
                 mp3.UpdateStock(Integer.parseInt(request.getParameter("cantidad" + i)), Integer.parseInt(request.getParameter("resultado" + i)));
             }
             response.sendRedirect("MantenedorPedidos.jsp");

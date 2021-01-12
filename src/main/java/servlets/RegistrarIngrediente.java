@@ -32,15 +32,21 @@ public class RegistrarIngrediente extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        int codigo = Integer.parseInt(request.getParameter("cod"));
+        //int codigo = Integer.parseInt(request.getParameter("cod"));
         String nombre = request.getParameter("nombreing");
         int cantidad = Integer.parseInt(request.getParameter("cantidad"));
         String rut = request.getParameter("rutprov");
         String state = request.getParameter("state");
         
-        ModeloIngredientes ming = new ModeloIngredientes();
+        System.out.println(nombre+" "+cantidad+" "+rut+" "+state);
         
-        if(ming.RegistrarIngrediente(codigo, nombre, cantidad, state, rut)){
+        ModeloIngredientes ming = new ModeloIngredientes();
+        ModeloIngredientes ming2 = new ModeloIngredientes();
+        
+        int valor = ming.RegistrarIngrediente(nombre, cantidad, state, rut);
+        
+        if(valor > -1){
+            ming2.RegistrarIngredienteProp(valor, rut);
             response.sendRedirect("mantenedorIngredientes.jsp");
         }else{
             response.sendRedirect("IngresarIngrediente.jsp?status=error");

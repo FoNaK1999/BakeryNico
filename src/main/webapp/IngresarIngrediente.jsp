@@ -30,8 +30,6 @@
             <h1 align="center">Ingresar Ingrediente</h1>
                 <form action="RegistrarIngrediente" method="post">
                     <table>
-                        <tr><td colspan="2"><label>Codigo ingrediente: </label></td></tr>
-                        <tr><td><input type="text" name="cod" required></td></tr>
                         <tr><td colspan="2"><label>Nombre: </label></td></tr>
                         <tr><td><input type="text" name="nombreing" required></td></tr>
                         <tr><td colspan="2"><label>Cantidad: </label></td></tr>

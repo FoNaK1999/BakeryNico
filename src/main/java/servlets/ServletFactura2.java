@@ -62,7 +62,7 @@ public class ServletFactura2 extends HttpServlet {
         valor = mp.RegistrarPedido("Pendiente", request.getParameter("rut"), patente);               
         
         if(valor>0){
-            mp2.RegistrarVenta(codeorder, monto, tipopago, estado, valor);
+            mp2.RegistrarVenta(monto, tipopago, estado, valor);
             response.sendRedirect("factura.jsp?valor="+valor);
         }else{
             response.sendRedirect("error.jsp");
