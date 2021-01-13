@@ -9,7 +9,7 @@ public class Conexion {
     private String port="3306";
     private String host="localhost";
     private String database="bakerynico";
-    private String classname="com.mysql.jdbc.Driver";
+    private String classname="com.mysql.cj.jdbc.Driver";
     private String url="jdbc:mysql://node61115-env-7271523.jelastic.saveincloud.net/"+database;
     Connection con;
     
