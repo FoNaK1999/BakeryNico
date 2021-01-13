@@ -22,7 +22,7 @@ public class ModeloUsuarios extends Conexion {
             pst.setString(2, pass);
             rs = pst.executeQuery();
             
-            if(rs.absolute(1)){
+            if(rs.next()){
                 return true;
             }
             
@@ -59,7 +59,7 @@ public class ModeloUsuarios extends Conexion {
             pst.setString(2, pass);
             rs = pst.executeQuery();
             
-            if(rs.absolute(1)){
+            if(rs.next()){
                 return true;
             }
             
