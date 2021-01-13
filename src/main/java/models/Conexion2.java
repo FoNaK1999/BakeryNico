@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class Conexion2 {
  // Librería de MySQL
-    public String driver = "com.mysql.jdbc.Driver";
+    public String driver = "com.mysql.cj.jdbc.Driver";
 
     // Nombre de la base de datos
     public String database = "bakerynico";
