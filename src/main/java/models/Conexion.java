@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 
 public class Conexion {
     private String user="root";
-    private String pass="VCVvdk58158";
+    private String pass="RELrbq70898";
     private String port="3306";
     private String host="localhost";
     private String database="bakerynico";
