@@ -18,7 +18,7 @@ public class Conexion2 {
     public String port = "3306";
 
     // Ruta de nuestra base de datos (desactivamos el uso de SSL con "?useSSL=false")
-    public String url = "jdbc:mysql://node61115-env-7271523.jelastic.saveincloud.net/" + database;
+    public String url = "jdbc:mysql://node61126-env-3188617.jelastic.saveincloud.net/" + database;
 
     // Nombre de usuario
     public String username = "root";
