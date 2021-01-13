@@ -13,8 +13,8 @@ public class ModeloProducto extends Conexion {
         PreparedStatement pst = null;
         ResultSet rs = null;
         try{
-            String sql = "call selectCategoriaprod(?)";
-            pst = getConnection().prepareCall(sql);
+            String sql = "SELECT * FROM productos WHERE estado = 'Disponible' and id_categoria_prod = ?";
+            pst = getConnection().prepareStatement(sql);
             pst.setInt(1,idcat);
             rs = pst.executeQuery();
             while(rs.next()){
@@ -122,5 +122,32 @@ public class ModeloProducto extends Conexion {
         return productos;
     }
     
+    public int CantidadFilas(){
+        
+        PreparedStatement pst = null;
+        int cantidad=0;
+        ResultSet rs = null;
+        try{
+            
+            String sql = "SELECT COUNT(id_producto) FROM productos WHERE estado = 'Disponible' ";
+            pst = getConnection().prepareStatement(sql);
+            rs = pst.executeQuery();
+            while(rs.next()){
+                cantidad = rs.getInt("COUNT(id_producto)");
+                return cantidad;
+            }
+            
+        }catch(SQLException ex){
+            System.out.println("Error al obtener filas de la tabla productos");
+        }
+        
+        return cantidad;
+    }
     
+    
+    public static void main(String[] args) {
+        ModeloProducto mp = new ModeloProducto();
+        
+        System.out.println(mp.CantidadFilas());
+    }
 }
